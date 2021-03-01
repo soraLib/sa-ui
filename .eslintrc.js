@@ -5,7 +5,8 @@ module.exports = {
     ecmaVersion: 2015,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
+      tsx: true
     }
   },
   extends: [
@@ -21,9 +22,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     'vue/custom-event-name-casing': 'off',
     'no-use-before-define': 'off',
-
     '@typescript-eslint/no-use-before-define': 'off',
-
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
