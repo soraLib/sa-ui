@@ -1,48 +1,75 @@
 module.exports = {
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-    ecmaVersion: 2015,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-      tsx: true
+  extends: ['plugin:markdown/recommended', 'prettier'],
+  overrides: [
+    {
+      files: ['*.vue', '*.js'],
+      extends: [
+        'plugin:vue/essential',
+        '@vue/standard'
+        // '@vue/typescript/recommended'
+      ],
+      rules: {
+        'vue/max-attributes-per-line': [
+          2,
+          {
+            singleline: 20,
+            multiline: {
+              max: 1,
+              allowFirstLine: false
+            }
+          }
+        ],
+        'vue/no-multiple-template-root': 0,
+        'vue/no-lone-template': 0,
+        'vue/no-v-model-argument': 0
+      }
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      extends: ['standard-with-typescript'],
+      parserOptions: {
+        project: './tsconfig.json',
+        ecmaFeatures: {
+          jsx: true
+        }
+      },
+      rules: {
+        '@typescript-eslint/strict-boolean-expressions': 0,
+        '@typescript-eslint/prefer-nullish-coalescing': 0,
+        '@typescript-eslint/naming-convention': 0,
+        'multiline-ternary': 0,
+        'no-void': 0
+      }
+    },
+    {
+      files: ['light.ts'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': 0,
+        '@typescript-eslint/explicit-function-return-type': 0
+      }
+    },
+    {
+      files: '**/*.md/*.js',
+      rules: {
+        'no-undef': 0
+      }
+    },
+    {
+      files: '*.spec.ts',
+      globals: {
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly'
+      },
+      rules: {
+        '@typescript-eslint/no-floating-promises': 0
+      }
+    },
+    {
+      files: '*',
+      globals: {
+        __DEV__: 'readonly'
+      }
     }
-  },
-  extends: [
-    'plugin:vue/vue3-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended'
-  ],
-  rules: {
-    '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    'vue/custom-event-name-casing': 'off',
-    'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        argsIgnorePattern: '^h$',
-        varsIgnorePattern: '^h$'
-      }
-    ],
-    'no-unused-vars': [
-      'error',
-      {
-        argsIgnorePattern: '^h$',
-        varsIgnorePattern: '^h$'
-      }
-    ],
-    'space-before-function-paren': 'off',
-    quotes: ['error', 'single'],
-    'comma-dangle': ['error', 'never']
-  }
+  ]
 }

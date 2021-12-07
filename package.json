@@ -1,31 +1,75 @@
 {
-  "name": "vue3-component",
+  "name": "ideal-designer",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A Vue 3 Component Library.",
+  "main": "lib/index.js",
   "scripts": {
-    "dev": "vite ./website",
-    "build": "vite build ./website",
-    "serve": "vite preview ./website",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "husky install"
   },
-  "keywords": [],
-  "author": "464576716@qq.com",
-  "license": "ISC",
+  "keywords": [
+    "vue",
+    "component library",
+    "ui"
+  ],
+  "author": "hfutsora",
+  "license": "MIT",
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.ts": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.tsx": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.vue": [
+      "prettier --parser=vue --write",
+      "eslint --fix"
+    ],
+    "*.css": [
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write --parser markdown --prose-wrap never",
+      "eslint --fix"
+    ]
+  },
   "dependencies": {
     "vue": "^3.0.5"
   },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hfutsora/ideal-designer"
+  },
   "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
     "@vitejs/plugin-vue": "^1.1.4",
     "@vue/compiler-sfc": "^3.0.5",
+    "@vue/eslint-config-standard": "^6.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.20.0",
-    "eslint-config-prettier": "^8.0.0",
-    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-config-standard-with-typescript": "^21.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-markdown": "^2.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^7.6.0",
-    "prettier": "^2.2.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
+    "prettier": "^2.5.1",
     "sass": "^1.32.8",
     "sass-loader": "^11.0.1",
     "typescript": "^4.1.5",
