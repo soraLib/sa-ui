@@ -7,6 +7,7 @@ importers:
       '@commitlint/cli': 17.1.2
       '@commitlint/config-conventional': 17.1.0
       '@esbuild-kit/cjs-loader': 2.3.3
+      '@sa-ui/constants': workspace:*
       '@sa-ui/utils': workspace:*
       '@types/jsdom': 16.2.15
       '@types/node': '*'
@@ -34,6 +35,7 @@ importers:
       vue: 3.2.39
       vue-tsc: 0.38.9
     dependencies:
+      '@sa-ui/constants': link:packages/constants
       '@sa-ui/utils': link:packages/utils
       '@vueuse/core': 8.9.4_vue@3.2.39
     devDependencies:
@@ -64,6 +66,9 @@ importers:
       vitest: 0.12.6_gfv3vrooakubqaaojrbb6grnpy
       vue: 3.2.39
       vue-tsc: 0.38.9_typescript@4.8.3
+
+  packages/constants:
+    specifiers: {}
 
   packages/utils:
     specifiers: {}
@@ -1438,8 +1443,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      is-text-path: 1.0.1
       JSONStream: 1.3.5
+      is-text-path: 1.0.1
       lodash: 4.17.21
       meow: 8.1.2
       split2: 3.2.2
