@@ -44,7 +44,7 @@
     "unplugin-vue-define-options": "0.11.2",
     "vitest": "0.12.6",
     "vue": "3.2.39",
-    "vue-tsc": "0.38.9"
+    "vue-tsc": "0.40.13"
   },
   "engines": {
     "node": ">= 16"
