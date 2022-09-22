@@ -18,7 +18,7 @@ importers:
       '@vueuse/core': 8.9.4
       eslint: 8.23.1
       eslint-define-config: 1.7.0
-      expect-type: 0.13.0
+      expect-type: 0.14.2
       fast-glob: 3.2.12
       husky: 8.0.1
       jsdom: 16.4.0
@@ -49,7 +49,7 @@ importers:
       '@vue/tsconfig': 0.1.3_@types+node@18.7.18
       eslint: 8.23.1
       eslint-define-config: 1.7.0
-      expect-type: 0.13.0
+      expect-type: 0.14.2
       fast-glob: 3.2.12
       husky: 8.0.1
       jsdom: 16.4.0
@@ -2334,8 +2334,8 @@ packages:
       strip-final-newline: 3.0.0
     dev: true
 
-  /expect-type/0.13.0:
-    resolution: {integrity: sha512-CclevazQfrqo8EvbLPmP7osnb1SZXkw47XPPvUUpeMz4HuGzDltE7CaIt3RLyT9UQrwVK/LDn+KVcC0hcgjgDg==}
+  /expect-type/0.14.2:
+    resolution: {integrity: sha512-ed3+tr5ujbIYXZ8Pl/VgIphwJQ0q5tBLGGdn7Zvwt1WyPBRX83xjT5pT77P/GkuQbctx0K2ZNSSan7eruJqTCQ==}
     dev: true
 
   /extend/3.0.2:
