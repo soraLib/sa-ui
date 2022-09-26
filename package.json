@@ -16,7 +16,7 @@
   "dependencies": {
     "@sa-ui/constants": "workspace:*",
     "@sa-ui/utils": "workspace:*",
-    "@vueuse/core": "9.2.0"
+    "@vueuse/core": "9.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
