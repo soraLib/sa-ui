@@ -8,7 +8,7 @@ type Append = Record<'headers' | 'footers' | 'scriptSetups', string[]>
 
 export function MarkdownTransform(): Plugin {
   return {
-    name: 'element-plus-md-transform',
+    name: 'sa-ui-md-transform',
     enforce: 'pre',
     async transform(code, id) {
       if (!id.endsWith('.md')) return
@@ -29,15 +29,18 @@ export function MarkdownTransform(): Plugin {
         absolute: true,
         onlyDirectories: true,
       })
+
       if (compPaths.some((compPath) => id.startsWith(compPath))) {
         code = transformComponentMarkdown(id, componentId, code, append)
+
+        return combineMarkdown(
+          code,
+          [combineScriptSetup(append.scriptSetups), ...append.headers],
+          append.footers
+        )
       }
 
-      return combineMarkdown(
-        code,
-        [combineScriptSetup(append.scriptSetups), ...append.headers],
-        append.footers
-      )
+      return code
     },
   }
 }

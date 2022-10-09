@@ -28,7 +28,6 @@ export const mdPlugin = (md: MarkdownIt) => {
 
     render(tokens, idx) {
       const m = tokens[idx].info.trim().match(/^demo\s*(.*)$/)
-      console.log('rtoken', tokens[idx].nesting)
 
       if (tokens[idx].nesting === 1 /* means the tag is opening */) {
         const description = m && m.length > 1 ? m[1] : ''
@@ -43,8 +42,6 @@ export const mdPlugin = (md: MarkdownIt) => {
           )
 
         }
-        console.log('source', source)
-        console.log('sourceFile', sourceFile)
         if (!source) throw new Error(`Incorrect source file: ${sourceFile}`)
 
         return `<Demo :demos="demos" source="${encodeURIComponent(

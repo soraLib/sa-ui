@@ -9,11 +9,14 @@ const Guide = [
   {
     text: 'FAQ',
     link: '/guide/faq',
-  },
-  {
-    text: 'Component',
-    link: '/component/input'
   }
+]
+
+const Components = [
+  {
+    text: 'Input',
+    link: '/component/input'
+  },
 ]
 
 const slidebars = [
@@ -21,6 +24,13 @@ const slidebars = [
     text: 'Guide',
     children: Guide.map((e) => {
       (e as any).useLinkText = `${e.text} | Guide`
+      return e
+    }),
+  },
+  {
+    text: 'Component',
+    children: Components.map((e) => {
+      (e as any).useLinkText = `${e.text} | Component`
       return e
     }),
   },
@@ -47,9 +57,14 @@ const config: UserConfig = {
         text: 'Guide',
         items: Guide,
       },
+      {
+        text: 'Component',
+        items: Components,
+      },
     ],
     sidebar: {
       'guide/': slidebars,
+      'component/': slidebars,
       '/': slidebars,
     },
   },

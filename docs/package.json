@@ -3,8 +3,8 @@
   "private": "true",
   "scripts": {
     "dev": "vitepress dev .",
-    "build": "vitepress build && esno scripts/build.ts",
-    "serve": "npm run build && serve .vitepress/dist"
+    "build": "vitepress build . && esno scripts/build.ts",
+    "serve": "pnpm run build && serve .vitepress/dist"
   },
   "dependencies": {
     "@vueuse/core": "^8.9.4",
