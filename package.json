@@ -26,7 +26,7 @@
     "@esbuild-kit/cjs-loader": "2.3.3",
     "@types/jsdom": "20.0.0",
     "@types/node": "*",
-    "@vitejs/plugin-vue": "3.1.0",
+    "@vitejs/plugin-vue": "3.1.2",
     "@vitejs/plugin-vue-jsx": "2.0.1",
     "@vitest/ui": "0.23.4",
     "@vue/test-utils": "2.0.2",
