@@ -2,9 +2,9 @@
   <a
     class="nav-bar-title"
     href="/"
-    aria-label="Sa Lambda, back to home`"
+    aria-label="Sa UI, back to home`"
   >
-    <span class="title">Sa Lambda</span>
+    <span class="title">Sa UI</span>
   </a>
 </template>
 

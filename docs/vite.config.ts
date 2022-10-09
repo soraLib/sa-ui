@@ -67,9 +67,9 @@ export default defineConfig({
       ],
       manifest: {
         id: '/',
-        name: 'Sa Lambda',
-        short_name: 'Sa Lambda',
-        description: 'Typescript library for functional programming.',
+        name: 'Sa UI',
+        short_name: 'Sa UI',
+        description: 'A Vue3 based component library.',
         theme_color: '#ffffff',
         icons: [
           {

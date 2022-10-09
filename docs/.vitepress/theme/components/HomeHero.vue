@@ -1,13 +1,12 @@
 <template>
   <header class="home-hero">
     <h1 class="tagline">
-      The
-      <span class="accent">Functional</span>
-      <br />Programming library
+      Sa
+      <span class="accent">UI</span>
     </h1>
 
     <p class="text-lg description">
-      A library for typed functional programming in TypeScript.
+      A Vue3 based component library.
     </p>
 
     <div class="mt-10 mb-20">
