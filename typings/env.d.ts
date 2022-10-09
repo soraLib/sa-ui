@@ -1,6 +1,13 @@
 import type { vShow } from 'vue'
+import type { INSTALLED_KEY } from '@sa-ui/constants'
 
 declare global {
+  const process: {
+    env: {
+      NODE_ENV: string
+    }
+  }
+
   namespace JSX {
     interface IntrinsicAttributes {
       class?: any
@@ -11,7 +18,7 @@ declare global {
 
 declare module '@vue/runtime-core' {
   export interface App {
-
+    [INSTALLED_KEY]?: boolean
   }
 
   export interface GlobalComponents {
