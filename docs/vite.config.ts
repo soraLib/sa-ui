@@ -3,9 +3,9 @@ import Components from 'unplugin-vue-components/vite'
 import WindiCSS from 'vite-plugin-windicss'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
-import replace from '@rollup/plugin-replace'
 import { VitePWA } from 'vite-plugin-pwa'
-import { version } from '../package.json'
+import { MarkdownTransform } from './.vitepress/plugins/markdown-transform'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 
 export default defineConfig({
   build: {
@@ -24,11 +24,7 @@ export default defineConfig({
     }
   },
   plugins: [
-    replace({
-      preventAssignment: true,
-      __PWA_VERSION__: version
-    }),
-
+    DefineOptions(),
     Components({
       dirs: [
         '.vitepress/theme/components'
@@ -51,6 +47,7 @@ export default defineConfig({
     }),
     Icons({}),
     WindiCSS(),
+    MarkdownTransform(),
     VitePWA({
       outDir: '.vitepress/dist',
       registerType: 'prompt',

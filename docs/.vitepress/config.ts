@@ -1,4 +1,5 @@
 import type { UserConfig } from 'vitepress'
+import { mdPlugin } from './config/plugins'
 
 const Guide = [
   {
@@ -9,6 +10,10 @@ const Guide = [
     text: 'FAQ',
     link: '/guide/faq',
   },
+  {
+    text: 'Component',
+    link: '/component/input'
+  }
 ]
 
 const slidebars = [
@@ -47,6 +52,10 @@ const config: UserConfig = {
       'guide/': slidebars,
       '/': slidebars,
     },
+  },
+
+  markdown: {
+    config: mdPlugin,
   },
 }
 

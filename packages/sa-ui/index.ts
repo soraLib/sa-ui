@@ -5,3 +5,5 @@ export * from './make-installer'
 export * from './installer'
 
 export const install = installer.install
+
+export default install
