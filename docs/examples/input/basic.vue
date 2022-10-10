@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'; // TODO: unimport
+import { ref } from 'vue'
 
 const input = ref('default')
 </script>

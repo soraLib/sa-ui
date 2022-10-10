@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { useToggle } from '@vueuse/core';
 import { computed } from 'vue'
 
 import Example from './Example.vue'
+import Source from './Source.vue'
 
 const props = defineProps<{
   demos: any
@@ -25,6 +27,8 @@ const formatPathDemos = computed(() => {
 const decodedDescription = computed(() =>
   decodeURIComponent(props.description!)
 )
+
+const [sourceVisible, toggleSourceVisible] = useToggle()
 </script>
 
 <template>
@@ -34,6 +38,14 @@ const decodedDescription = computed(() =>
 
     <div class="example" v-if="formatPathDemos[path]">
       <Example :file="path" :demo="formatPathDemos[path]" />
+
+      <button @click="toggleSourceVisible()">
+        {{ sourceVisible ? 'hide' : 'view' }} source
+      </button>
+
+      <Source v-show="sourceVisible" :source="source" /> <!-- TODO: copy source code -->
+
+      <!-- TODO: playground -->
     </div>
   </ClientOnly>
 </template>
