@@ -9,4 +9,5 @@
   "include": [
     "packages/sa-ui/package.json"
   ],
+  "exclude": ["**/__tests__/**", "**/tests/**", "**/dist"]
 }

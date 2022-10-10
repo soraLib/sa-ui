@@ -10,7 +10,7 @@
   "include": [
     "packages", 
     "typings/components.d.ts", 
-    "typings/env.d.ts", 
+    "typings/env.d.ts",
   ],
   "exclude": [
     "node_modules",

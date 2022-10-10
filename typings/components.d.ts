@@ -4,7 +4,7 @@ import '@vue/runtime-core'
 // GlobalComponents for Volar
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    SInput: typeof import('sa-ui')['SInput']
+    SInput: typeof import('../packages/sa-ui')['SInput']
   }
 
   interface ComponentCustomProperties {
