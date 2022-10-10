@@ -82,7 +82,7 @@ importers:
       '@types/node': 17.0.45
       '@types/prismjs': 1.26.0
       '@vueuse/core': 8.9.4
-      '@vueuse/shared': 8.9.4
+      '@vueuse/shared': 9.3.0
       consola: 2.15.3
       esbuild-register: 3.3.3
       escape-html: 1.0.3
@@ -111,7 +111,7 @@ importers:
       workbox-window: 6.5.4
     dependencies:
       '@vueuse/core': 8.9.4_vue@3.2.40
-      '@vueuse/shared': 8.9.4_vue@3.2.40
+      '@vueuse/shared': 9.3.0_vue@3.2.40
       markdown-it: 13.0.1
       sa-ui: link:../packages/sa-ui
       vue: 3.2.40
