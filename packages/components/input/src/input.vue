@@ -8,7 +8,7 @@
 <script lang="ts" setup>
 import { inputProps, inputEmits } from './input';
 
-defineOptions({ // TODO: unplugin import
+defineOptions({
   name: 'SInput',
 })
 
