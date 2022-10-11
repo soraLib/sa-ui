@@ -8,7 +8,7 @@ const { hasLinks, prev, next } = useNextAndPrevLinks()
 <template>
   <div v-if="hasLinks" class="next-and-prev-link">
     <div class="container" :class="!next || !prev ? 'empty' : null">
-      <div class="prev" :class="prev ? ull : 'empty'">
+      <div class="prev" :class="prev ? null : 'empty'">
         <a v-if="prev" class="link" :href="withBase(prev.link)">
           <ArrowLeft class="icon icon-prev" />
           <span class="text">{{ prev.useLinkText ? prev.useLinkText : prev.text }}</span>
