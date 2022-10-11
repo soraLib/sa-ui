@@ -18,7 +18,7 @@ const { copy, isSupported: isCopySupported } = useClipboard({
 
 const copyCode = async () => {
   if (!isCopySupported) 
-    useWebNotification({ title: 'This browser does not support automatic copy!' }).show()
+    return useWebNotification({ title: 'This browser does not support automatic copy!' }).show()
 
   try {
     await copy()
