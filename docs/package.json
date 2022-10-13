@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@vueuse/core": "8.9.4",
-    "@vueuse/shared": "8.9.4",
+    "@vueuse/shared": "9.3.0",
     "markdown-it": "13.0.1",
     "sa-ui": "npm:sa-ui@latest",
     "vue": "3.2.40",
