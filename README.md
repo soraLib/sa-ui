@@ -7,6 +7,7 @@ A Vue3 based component library.
 - [ ] components
   - [ ] input
   - [ ] select
+  - [ ] fab
   - [ ] and more...
 - [ ] tests
 - [ ] docs

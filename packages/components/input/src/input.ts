@@ -4,7 +4,7 @@ import { isString } from '@vue/shared'
 
 export const inputProps = {
   // TODO: build props util
- modelValue: {
+  modelValue: {
     type: [
       String,
       Number,
