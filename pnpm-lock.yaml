@@ -73,7 +73,7 @@ importers:
 
   docs:
     specifiers:
-      '@iconify/json': 2.1.120
+      '@iconify/json': 2.1.122
       '@rollup/plugin-replace': 4.0.0
       '@types/escape-html': 1.0.2
       '@types/fs-extra': 9.0.13
@@ -117,7 +117,7 @@ importers:
       vue: 3.2.40
       vue-global-api: 0.4.1_vue@3.2.40
     devDependencies:
-      '@iconify/json': 2.1.120
+      '@iconify/json': 2.1.122
       '@rollup/plugin-replace': 4.0.0
       '@types/escape-html': 1.0.2
       '@types/fs-extra': 9.0.13
@@ -1791,8 +1791,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@iconify/json/2.1.120:
-    resolution: {integrity: sha512-4/i5iXtfi3ARkylcZcCD0elC2qWo7CIa5caeeTGLx06yblqDQEzIfgclVc7FJJkktKEUJHftQhRlwGOr9cMINQ==}
+  /@iconify/json/2.1.122:
+    resolution: {integrity: sha512-YWVm+91+ilCGnOsdzKvGxjxR/Jo4p5EbbWPezYoqqq5wxRwD4lh57LBx3aHxjtWMgb1MGfcruyvFe3jypb6ZwA==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 0.3.9
