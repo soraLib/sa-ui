@@ -97,7 +97,7 @@ importers:
       prismjs: 1.29.0
       sa-ui: npm:sa-ui@latest
       typescript: 4.8.4
-      unplugin-icons: 0.14.11
+      unplugin-icons: 0.14.12
       unplugin-vue-components: 0.19.9
       vite: 3.1.8
       vite-plugin-pwa: 0.13.1
@@ -137,7 +137,7 @@ importers:
       prism-theme-vars: 0.2.4
       prismjs: 1.29.0
       typescript: 4.8.4
-      unplugin-icons: 0.14.11
+      unplugin-icons: 0.14.12
       unplugin-vue-components: 0.19.9_vite@3.1.8+vue@3.2.40
       vite: 3.1.8
       vite-plugin-pwa: 0.13.1_a24bsgtcozgewh66gr7y47mcdm
@@ -6664,8 +6664,8 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /unplugin-icons/0.14.11:
-    resolution: {integrity: sha512-szr6QA1ILT4RrJCmtvW41m2KPwUCCIx8QNgwEmTehvzEkSLDrdEaBhKGMWb/qTe5/zwnfwrDGcFT/6pGOSHJcA==}
+  /unplugin-icons/0.14.12:
+    resolution: {integrity: sha512-FdkjDnUnc8/75OT8Ywwm8iDyG6kO8w1uHfFbnO2Jh7JhpE0odKhCqaAOmEE/UlvYDYSm5D4X1DKdWMwpAxj07Q==}
     peerDependencies:
       '@svgr/core': '>=5.5.0'
       '@vue/compiler-sfc': ^3.0.2
