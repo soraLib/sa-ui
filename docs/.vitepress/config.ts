@@ -43,6 +43,7 @@ const slidebars = [
 const config: UserConfig = {
   title: 'Sa UI',
   description: 'a Vue 3 based component library.',
+  appearance: false,
   lang: 'en-US',
   base: '/',
   head: [
