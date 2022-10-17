@@ -5,6 +5,7 @@ export default defineConfig({
   extract: {
     include: [
       '.vitepress/**/*.vue',
+      'examples/**/*.vue',
     ],
   },
   theme: {

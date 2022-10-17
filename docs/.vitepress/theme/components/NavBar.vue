@@ -33,7 +33,7 @@ defineEmits(['toggle'])
   </header>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .nav-bar {
   position: fixed;
   top: 0;
