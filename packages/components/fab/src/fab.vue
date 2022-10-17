@@ -64,8 +64,7 @@ const onEnd = (position: Position) => {
   if (!fab.value) return
 
   if (between(fabPosition.value.x, 0, fabMaxXPosition.value)) {
-    atRight.value = false
-    atLeft.value = false
+    clearAtSide()
     // TODO: add change atEdge status threshold and animations
     return
   }
@@ -85,7 +84,7 @@ const onMove = (position: Position) => {
 }
 
 useDraggable(fab, {
-  initialValue: { x: 400, y: 200 },
+  initialValue: { x: 400, y: 200 }, // TODO: initial position
   onMove,
   onEnd,
 })
