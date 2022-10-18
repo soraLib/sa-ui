@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
 import type { DefaultTheme } from '../config'
 

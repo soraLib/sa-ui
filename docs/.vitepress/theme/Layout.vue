@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed, ref, watch } from 'vue'
 import { useData, useRoute } from 'vitepress'
 import { onClickOutside, useDebounceFn } from '@vueuse/core'
 
