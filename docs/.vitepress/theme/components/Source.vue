@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useClipboard, useWebNotification } from '@vueuse/core';
 import { computed } from 'vue'
+import { useClipboard, useWebNotification } from '@vueuse/core'
 
-const props = defineProps<{ 
+const props = defineProps<{
   source: string
   rawSource: string
 }>()
@@ -17,8 +17,10 @@ const { copy, isSupported: isCopySupported } = useClipboard({
 })
 
 const copyCode = async () => {
-  if (!isCopySupported) 
-    return useWebNotification({ title: 'This browser does not support automatic copy!' }).show()
+  if (!isCopySupported)
+    return useWebNotification({
+      title: 'This browser does not support automatic copy!',
+    }).show()
 
   try {
     await copy()
@@ -47,7 +49,7 @@ const copyCode = async () => {
   border-radius: 0;
 }
 
-[class*=language-] {
+[class*='language-'] {
   > button.copy {
     position: absolute;
     top: 8px;
@@ -67,7 +69,7 @@ const copyCode = async () => {
     background-position: 50%;
     background-size: 20px;
     background-repeat: no-repeat;
-    transition: opacity .4s;
+    transition: opacity 0.4s;
   }
 
   &:hover > button.copy {

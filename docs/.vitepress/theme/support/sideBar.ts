@@ -1,19 +1,19 @@
-import type { DefaultTheme } from '../config'
 import {
   ensureSlash,
   ensureStartingSlash,
   isArray,
   removeExtention,
 } from '../utils'
+import type { DefaultTheme } from '../config'
 
 export function isSideBarConfig(
-  sidebar: DefaultTheme.SideBarConfig | DefaultTheme.MultiSideBarConfig,
+  sidebar: DefaultTheme.SideBarConfig | DefaultTheme.MultiSideBarConfig
 ): sidebar is DefaultTheme.SideBarConfig {
   return sidebar === false || sidebar === 'auto' || isArray(sidebar)
 }
 
 export function isSideBarGroup(
-  item: DefaultTheme.SideBarItem,
+  item: DefaultTheme.SideBarItem
 ): item is DefaultTheme.SideBarGroup {
   return (item as DefaultTheme.SideBarGroup).children !== undefined
 }
@@ -26,10 +26,9 @@ export function isSideBarGroup(
  */
 export function getSideBarConfig(
   sidebar: DefaultTheme.SideBarConfig | DefaultTheme.MultiSideBarConfig,
-  path: string,
+  path: string
 ): DefaultTheme.SideBarConfig {
-  if (isSideBarConfig(sidebar))
-    return sidebar
+  if (isSideBarConfig(sidebar)) return sidebar
 
   // get the very first segment of the path to compare with nulti sidebar keys
   // and make sure it's surrounded by slash
@@ -39,8 +38,7 @@ export function getSideBarConfig(
 
   for (const dir of Object.keys(sidebar)) {
     // make sure the multi sidebar key is surrounded by slash too
-    if (path === ensureSlash(dir))
-      return sidebar[dir]
+    if (path === ensureSlash(dir)) return sidebar[dir]
   }
 
   return 'auto'
@@ -53,11 +51,15 @@ export function getSideBarConfig(
  * link contains it.
  */
 export function getFlatSideBarLinks(
-  sidebar: DefaultTheme.SideBarItem[],
+  sidebar: DefaultTheme.SideBarItem[]
 ): DefaultTheme.SideBarLink[] {
   return sidebar.reduce<DefaultTheme.SideBarLink[]>((links, item) => {
     if (item.link)
-      links.push({ text: item.text, link: removeExtention(item.link), useLinkText: item.useLinkText })
+      links.push({
+        text: item.text,
+        link: removeExtention(item.link),
+        useLinkText: item.useLinkText,
+      })
 
     if (isSideBarGroup(item))
       links = [...links, ...getFlatSideBarLinks(item.children)]

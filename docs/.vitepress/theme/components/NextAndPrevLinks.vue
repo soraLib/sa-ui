@@ -11,12 +11,16 @@ const { hasLinks, prev, next } = useNextAndPrevLinks()
       <div class="prev" :class="prev ? null : 'empty'">
         <a v-if="prev" class="link" :href="withBase(prev.link)">
           <ArrowLeft class="icon icon-prev" />
-          <span class="text">{{ prev.useLinkText ? prev.useLinkText : prev.text }}</span>
+          <span class="text">{{
+            prev.useLinkText ? prev.useLinkText : prev.text
+          }}</span>
         </a>
       </div>
       <div class="next" :class="next ? null : 'empty'">
         <a v-if="next" class="link" :href="withBase(next.link)">
-          <span class="text">{{ next.useLinkText ? next.useLinkText : next.text }}</span>
+          <span class="text">{{
+            next.useLinkText ? next.useLinkText : next.text
+          }}</span>
           <ArrowRight class="icon icon-next" />
         </a>
       </div>

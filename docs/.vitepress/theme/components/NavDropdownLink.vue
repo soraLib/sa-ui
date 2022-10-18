@@ -10,7 +10,12 @@ const route = useRoute()
 
 const open = ref(false)
 
-watch(() => route.path, () => { open.value = false })
+watch(
+  () => route.path,
+  () => {
+    open.value = false
+  }
+)
 
 function toggle() {
   open.value = !open.value
@@ -19,7 +24,13 @@ function toggle() {
 
 <template>
   <div class="nav-dropdown-link" :class="{ open }">
-    <button type="button" class="button" :aria-label="item.ariaLabel" @click="toggle" @keydown.enter="toggle">
+    <button
+      type="button"
+      class="button"
+      :aria-label="item.ariaLabel"
+      @click="toggle"
+      @keydown.enter="toggle"
+    >
       <span class="button-text">{{ item.text }}</span>
       <span class="button-arrow" :class="open ? 'down' : 'right'" />
     </button>
@@ -81,7 +92,7 @@ function toggle() {
     border-bottom: 2px solid transparent;
     padding: 0 4px;
     line-height: 24px;
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-weight: 500;
   }
 }

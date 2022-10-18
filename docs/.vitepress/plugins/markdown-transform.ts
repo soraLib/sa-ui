@@ -1,4 +1,3 @@
-import fs from 'fs'
 import path from 'path'
 import glob from 'fast-glob'
 
@@ -81,8 +80,8 @@ const transformVpScriptSetup = (code: string, append: Append) => {
 const transformComponentMarkdown = (
   id: string,
   componentId: string,
-  code: string,
-  append: Append
+  code: string
+  // append: Append
 ) => {
   return code
 }

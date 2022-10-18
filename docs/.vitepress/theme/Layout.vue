@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import {
-  useData,
-  useRoute,
-} from 'vitepress'
-import {
-  onClickOutside,
-  useDebounceFn,
-} from '@vueuse/core'
+import { useData, useRoute } from 'vitepress'
+import { onClickOutside, useDebounceFn } from '@vueuse/core'
 
 // generic state
 const route = useRoute()
@@ -19,14 +13,10 @@ const enableHome = computed(() => !!route.data.frontmatter.home)
 const showNavbar = computed(() => {
   const { themeConfig } = site.value
   const { frontmatter } = route.data
-  if (frontmatter.navbar === false || themeConfig.navbar === false)
-    return false
+  if (frontmatter.navbar === false || themeConfig.navbar === false) return false
 
   return (
-    page.value.title
-      || themeConfig.logo
-      || themeConfig.repo
-      || themeConfig.nav
+    page.value.title || themeConfig.logo || themeConfig.repo || themeConfig.nav
   )
 })
 
@@ -38,11 +28,11 @@ const showSidebar = computed(() => {
   const { frontmatter } = route.data
   const { themeConfig } = site.value
   return (
-    !frontmatter.home
-      && frontmatter.sidebar !== false
-      && ((typeof themeConfig.sidebar === 'object'
-              && Object.keys(themeConfig.sidebar).length !== 0)
-          || (Array.isArray(themeConfig.sidebar) && themeConfig.sidebar.length !== 0))
+    !frontmatter.home &&
+    frontmatter.sidebar !== false &&
+    ((typeof themeConfig.sidebar === 'object' &&
+      Object.keys(themeConfig.sidebar).length !== 0) ||
+      (Array.isArray(themeConfig.sidebar) && themeConfig.sidebar.length !== 0))
   )
 })
 
@@ -58,8 +48,7 @@ onClickOutside(sideBarRef, () => {
   // we need only debounce if shown
   // if the toggleSidebar clicked when hidden and we don't debounce
   // the sidebar will be closed
-  if (showNavbar.value && openSideBar.value)
-    debounceClickOutside()
+  if (showNavbar.value && openSideBar.value) debounceClickOutside()
 })
 
 const hideSidebar = toggleSidebar.bind(null, false)

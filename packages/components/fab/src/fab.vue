@@ -1,20 +1,22 @@
 <template>
-  <div tabindex="0" class="s-fab" ref="fab" :style="fabStyle">
+  <div ref="fab" tabindex="0" class="s-fab" :style="fabStyle">
     <div v-show="!atSide">
-      <slot></slot>
+      <slot />
     </div>
 
     <div v-show="atSide">
-      <slot name="side"></slot>
+      <slot name="side" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, CSSProperties } from 'vue';
-import { Position, useDraggable, useElementSize, useWindowSize } from '@vueuse/core'
-import { between, addUnit, isNullish } from '@sa-ui/utils'
+import { computed, ref } from 'vue'
+import { useDraggable, useElementSize, useWindowSize } from '@vueuse/core'
+import { addUnit, between, isNullish } from '@sa-ui/utils'
 import { fabProps } from './fab'
+import type { Position } from '@vueuse/core'
+import type { CSSProperties } from 'vue'
 
 defineOptions({
   name: 'SFab',
@@ -35,13 +37,13 @@ const fabStyle = computed(() => {
     top: addUnit(fabPosition.value.y),
   }
 
-  if(atRight.value) 
+  if (atRight.value)
     return {
       ...style,
       right: 0,
     }
 
-  if(atLeft.value) 
+  if (atLeft.value)
     return {
       ...style,
       left: 0,
@@ -53,7 +55,9 @@ const fabStyle = computed(() => {
   }
 })
 
-const fabMaxXPosition = computed(() => windowSize.width.value - fabSize.width.value)
+const fabMaxXPosition = computed(
+  () => windowSize.width.value - fabSize.width.value
+)
 
 const clearAtSide = () => {
   atLeft.value = false
@@ -98,7 +102,7 @@ useDraggable(fab, {
   onMove,
   onEnd,
 })
-</script> 
+</script>
 
 <style lang="scss" scoped>
 .s-fab {

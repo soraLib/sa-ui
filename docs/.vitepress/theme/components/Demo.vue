@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useToggle } from '@vueuse/core';
 import { computed } from 'vue'
+import { useToggle } from '@vueuse/core'
 
 import Example from './Example.vue'
 import Source from './Source.vue'
@@ -36,7 +36,7 @@ const [sourceVisible, toggleSourceVisible] = useToggle()
     <!-- danger here DO NOT USE INLINE SCRIPT TAG -->
     <p text="sm" v-html="decodedDescription" />
 
-    <div class="example" v-if="formatPathDemos[path]">
+    <div v-if="formatPathDemos[path]" class="example">
       <Example :file="path" :demo="formatPathDemos[path]" />
 
       <div class="tools">
@@ -45,7 +45,8 @@ const [sourceVisible, toggleSourceVisible] = useToggle()
         </button>
       </div>
 
-      <Source v-show="sourceVisible" :source="source" :rawSource="rawSource" /> <!-- TODO: copy source code -->
+      <Source v-show="sourceVisible" :source="source" :raw-source="rawSource" />
+      <!-- TODO: copy source code -->
 
       <!-- TODO: playground -->
     </div>
