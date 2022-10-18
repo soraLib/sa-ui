@@ -1,0 +1,18 @@
+@use 'sass:map';
+
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(fab) {
+  @include set-component-css-var('fab', $fab);
+}
+
+@include b(fab) {
+  @include inset-input-border(#{getCssVar('fab', 'border-color')});
+
+  &:focus {
+    outline: none;
+    @include inset-input-border(#{getCssVar('fab', 'focus-border-color')});
+  }
+}

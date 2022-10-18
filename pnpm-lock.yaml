@@ -13,6 +13,7 @@ importers:
       '@sa-ui/utils': workspace:*
       '@types/jsdom': ^20.0.0
       '@types/node': ^18.8.0
+      '@types/sass': ^1.43.1
       '@vitejs/plugin-vue': ^3.1.2
       '@vitejs/plugin-vue-jsx': ^2.0.1
       '@vitest/ui': ^0.23.4
@@ -51,6 +52,7 @@ importers:
       '@sa-ui/eslint-config': link:internal/eslint-config
       '@types/jsdom': 20.0.0
       '@types/node': 18.11.0
+      '@types/sass': 1.43.1
       '@vitejs/plugin-vue': 3.1.2_vue@3.2.41
       '@vitejs/plugin-vue-jsx': 2.0.1_vue@3.2.41
       '@vitest/ui': 0.23.4
@@ -207,6 +209,9 @@ importers:
     devDependencies:
       '@types/node': 18.8.3
       vue: 3.2.40
+
+  packages/theme:
+    specifiers: {}
 
   packages/utils:
     specifiers: {}
@@ -2143,6 +2148,12 @@ packages:
 
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
+    dependencies:
+      '@types/node': 18.11.0
+    dev: true
+
+  /@types/sass/1.43.1:
+    resolution: {integrity: sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==}
     dependencies:
       '@types/node': 18.11.0
     dev: true
