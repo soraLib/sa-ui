@@ -2,6 +2,7 @@
   "name": "@sa-ui/theme",
   "version": "0.0.1",
   "private": true,
+  "description": "sa ui theme.",
   "license": "MIT",
-  "description": "sa ui theme."
+  "main": "index.css"
 }

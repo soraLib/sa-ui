@@ -1,5 +1,25 @@
+@use 'sass:map';
 
+// CSS3 var
+@use 'common/var' as *;
+@use 'mixins/var' as *;
+@use 'mixins/mixins' as *;
 
+// for light
 :root {
-  
+  color-scheme: light;
+
+  @each $type in $types {
+    @include set-css-color-type($colors, $type);
+  }
+
+  // --s-border-color-#{$type}
+  @include set-component-css-var('border-color', $border-color);
+
+  @include set-css-var-value('border-color-hover', $border-color-hover);
+  @include set-css-var-value(
+    'border',
+    getCssVar('border-width') getCssVar('border-style')
+      getCssVar('border-color')
+  );
 }

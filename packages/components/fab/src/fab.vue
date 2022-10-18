@@ -108,13 +108,5 @@ useDraggable(fab, {
 .s-fab {
   display: block;
   border-radius: 4px;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:focus {
-    outline: 2px solid green;
-  }
 }
 </style>
