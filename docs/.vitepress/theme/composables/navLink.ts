@@ -1,8 +1,8 @@
-import type { Ref } from 'vue'
 import { computed } from 'vue'
 import { useRoute, withBase } from 'vitepress'
-import type { DefaultTheme } from '../config'
 import { isExternal as isExternalCheck } from '../utils'
+import type { DefaultTheme } from '../config'
+import type { Ref } from 'vue'
 
 export function useNavLink(item: Ref<DefaultTheme.NavItemWithLink>) {
   const route = useRoute()
@@ -16,29 +16,36 @@ export function useNavLink(item: Ref<DefaultTheme.NavItemWithLink>) {
     let active = false
     if (item.value.activeMatch) {
       active = new RegExp(item.value.activeMatch).test(routePath)
-    }
-    else {
+    } else {
       const itemPath = normalizePath(withBase(link))
-      active
-        = itemPath === '/'
+      active =
+        itemPath === '/'
           ? itemPath === routePath
           : routePath.startsWith(itemPath)
       // fix /frameworks/sveltekit and /frameworks/svelte
-      if (routePath === '/frameworks/sveltekit' && itemPath === '/frameworks/svelte' && active)
+      if (
+        routePath === '/frameworks/sveltekit' &&
+        itemPath === '/frameworks/svelte' &&
+        active
+      )
         active = false
       // fix /examples/sveltekit and /examples/svelte
-      if (routePath === '/examples/sveltekit' && itemPath === '/examples/svelte' && active)
+      if (
+        routePath === '/examples/sveltekit' &&
+        itemPath === '/examples/svelte' &&
+        active
+      )
         active = false
     }
 
     return {
-      'class': {
+      class: {
         active,
         isExternal,
       },
-      'href': isExternal ? link : withBase(link),
-      'target': item.value.target || isExternal ? '_blank' : null,
-      'rel': item.value.rel || isExternal ? 'noopener noreferrer' : null,
+      href: isExternal ? link : withBase(link),
+      target: item.value.target || isExternal ? '_blank' : null,
+      rel: item.value.rel || isExternal ? 'noopener noreferrer' : null,
       'aria-label': item.value.ariaLabel,
     }
   })
@@ -50,8 +57,10 @@ export function useNavLink(item: Ref<DefaultTheme.NavItemWithLink>) {
 }
 
 function interpret(path = '') {
-  return path
-    .replace(/{{pathname}}/, typeof window === 'undefined' ? '/' : location.pathname)
+  return path.replace(
+    /{{pathname}}/,
+    typeof window === 'undefined' ? '/' : location.pathname
+  )
 }
 
 function normalizePath(path: string): string {

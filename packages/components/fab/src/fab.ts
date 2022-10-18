@@ -9,7 +9,7 @@ export const fabProps = {
   // TODO: build props util
   initialPosition: {
     type: definePropType<FabPosition>(Object),
-    required: false
-  }
+    required: false,
+  },
 }
 export type FabProps = typeof fabProps

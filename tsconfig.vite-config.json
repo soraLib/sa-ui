@@ -4,6 +4,12 @@
     "composite": true,
     "types": ["node"]
   },
-  "include": ["**/vite.config.*", "**/vitest.config.*", "**/vite.init.*", "vite.ts", "vite.ts"],
+  "include": [
+    "**/vite.config.*",
+    "**/vitest.config.*",
+    "**/vite.init.*",
+    "vite.ts",
+    "vite.ts"
+  ],
   "exclude": ["docs"]
 }

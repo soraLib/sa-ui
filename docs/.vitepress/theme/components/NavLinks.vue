@@ -26,7 +26,7 @@ const show = computed(() => links.value)
 
 <style scoped>
 .nav-links {
-  padding: .75rem 0;
+  padding: 0.75rem 0;
   border-bottom: 1px solid var(--c-divider);
 }
 

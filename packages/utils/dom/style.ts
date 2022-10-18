@@ -3,9 +3,9 @@ import { isNullish } from '@sa-ui/utils'
 
 /**
  * Adds unit to a value.
- * 
+ *
  * @example
- * 
+ *
  * ```ts
  * expect(addUnit()).toBe('')
  * expect(addUnit('100px')).toBe('100px')

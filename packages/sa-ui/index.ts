@@ -7,4 +7,4 @@ export * from './installer'
 
 export const install = installer.install
 
-export default install
+export default installer

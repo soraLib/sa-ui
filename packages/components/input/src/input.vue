@@ -19,8 +19,13 @@
 </template>
 
 <script lang="ts" setup>
-import { UPDATE_EVENT, FOCUS_EVENT, BLUR_EVENT, CHANGE_EVENT } from '@sa-ui/constants';
-import { inputEmits, inputProps } from './input';
+import {
+  BLUR_EVENT,
+  CHANGE_EVENT,
+  FOCUS_EVENT,
+  UPDATE_EVENT,
+} from '@sa-ui/constants'
+import { inputEmits, inputProps } from './input'
 
 defineOptions({
   name: 'SInput',
@@ -31,7 +36,7 @@ const emit = defineEmits(inputEmits)
 
 type TargetElement = HTMLInputElement | HTMLTextAreaElement
 const handleInput = (event: Event) => {
-  let { value } = event.target as TargetElement
+  const { value } = event.target as TargetElement
   emit(UPDATE_EVENT, value)
 }
 const handleChange = (event: Event) => {

@@ -1,8 +1,9 @@
 import { INSTALLED_KEY } from '@sa-ui/constants'
+import { version } from './version'
 import type { App, Plugin } from '@vue/runtime-core'
 
 export const makeInstaller = (components: Plugin[] = []) => {
-  const install = (app: App, options?: {}/* TODO: provide */) => {
+  const install = (app: App) => {
     // @ts-ignore
     if (app[INSTALLED_KEY]) return
     // @ts-ignore
@@ -11,7 +12,7 @@ export const makeInstaller = (components: Plugin[] = []) => {
   }
 
   return {
-    /* version */
+    version,
     install,
   }
 }

@@ -24,9 +24,9 @@ export function useNextAndPrevLinks() {
 
   const next = computed(() => {
     if (
-      theme.value.nextLinks !== false
-      && index.value > -1
-      && index.value < candidates.value.length - 1
+      theme.value.nextLinks !== false &&
+      index.value > -1 &&
+      index.value < candidates.value.length - 1
     )
       return candidates.value[index.value + 1]
 

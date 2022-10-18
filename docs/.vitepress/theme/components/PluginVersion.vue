@@ -27,13 +27,32 @@ const version = `PWA build version: v${pwaVersion}`
       <rect width="45" height="20" fill="url(#s)" />
     </g>
     <g
-      fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif"
-      text-rendering="geometricPrecision" font-size="110"
+      fill="#fff"
+      text-anchor="middle"
+      font-family="Verdana,Geneva,DejaVu Sans,sans-serif"
+      text-rendering="geometricPrecision"
+      font-size="110"
     >
-      <text aria-hidden="true" x="225" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="350">
+      <text
+        aria-hidden="true"
+        x="225"
+        y="150"
+        fill="#010101"
+        fill-opacity=".3"
+        transform="scale(.1)"
+        textLength="350"
+      >
         {{ version }}
       </text>
-      <text x="225" y="140" transform="scale(.1)" fill="#0c0c0c" textLength="350">{{ version }}</text>
+      <text
+        x="225"
+        y="140"
+        transform="scale(.1)"
+        fill="#0c0c0c"
+        textLength="350"
+      >
+        {{ version }}
+      </text>
     </g>
   </svg>
 </template>

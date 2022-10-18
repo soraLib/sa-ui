@@ -5,12 +5,13 @@
       <span class="accent">UI</span>
     </h1>
 
-    <p class="text-lg description">
-      A Vue3 based component library.
-    </p>
+    <p class="text-lg description">A Vue3 based component library.</p>
 
     <div class="mt-10 mb-20">
-      <NavLink :item="{ link: '/guide/', text: 'Get Started' }" class="action mx-2" />
+      <NavLink
+        :item="{ link: '/guide/', text: 'Get Started' }"
+        class="action mx-2"
+      />
     </div>
   </header>
 </template>
@@ -87,7 +88,7 @@ html:not(.dark) .accent,
   max-width: 960px;
   color: var(--c-text-light);
   line-height: 1.5;
-  transition: color .5s;
+  transition: color 0.5s;
   font-size: 22px;
   margin: 24px auto 40px;
 }
