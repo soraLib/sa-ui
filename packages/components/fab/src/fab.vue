@@ -13,18 +13,20 @@
 <script lang="ts" setup>
 import { ref, computed, CSSProperties } from 'vue';
 import { Position, useDraggable, useElementSize, useWindowSize } from '@vueuse/core'
-import { between, addUnit } from '@sa-ui/utils'
+import { between, addUnit, isNullish } from '@sa-ui/utils'
+import { fabProps } from './fab'
 
 defineOptions({
   name: 'SFab',
 })
+const props = defineProps(fabProps)
 
 const atLeft = ref(false)
 const atRight = ref(false)
 const atSide = computed(() => atLeft.value || atRight.value)
 
 const fab = ref<null | HTMLDivElement>(null)
-const fabPosition = ref({ x: 0, y: 0 })
+const fabPosition = ref(props.initialPosition ?? { x: undefined, y: undefined })
 const fabStyle = computed(() => {
   const style: CSSProperties = {
     position: 'fixed',
@@ -58,14 +60,14 @@ const clearAtSide = () => {
   atRight.value = false
 }
 
-const windowSize = useWindowSize()
+const windowSize = useWindowSize({})
 const fabSize = useElementSize(fab)
 const onEnd = (position: Position) => {
-  if (!fab.value) return
+  if (!fab.value || isNullish(fabPosition.value.x)) return
 
   if (between(fabPosition.value.x, 0, fabMaxXPosition.value)) {
     clearAtSide()
-    // TODO: add change atEdge status threshold and animations
+    // TODO: adds change atEdge status threshold and animations
     return
   }
 
@@ -80,11 +82,19 @@ const onEnd = (position: Position) => {
 const onMove = (position: Position) => {
   fabPosition.value.x = position.x
   fabPosition.value.y = position.y
+
+  // limits the box to always be inside the window.
+  if (position.y <= -fabSize.height.value) {
+    fabPosition.value.y = 0
+  } else if (position.y >= windowSize.height.value) {
+    fabPosition.value.y = windowSize.height.value - fabSize.height.value
+  }
+
   clearAtSide()
 }
 
 useDraggable(fab, {
-  initialValue: { x: 400, y: 200 }, // TODO: initial position
+  initialValue: props.initialPosition,
   onMove,
   onEnd,
 })

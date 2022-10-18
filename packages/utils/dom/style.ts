@@ -1,4 +1,5 @@
-import { isString } from '@vue/shared';
+import { isString } from '@vue/shared'
+import { isNullish } from '@sa-ui/utils'
 
 /**
  * Adds unit to a value.
@@ -13,7 +14,7 @@ import { isString } from '@vue/shared';
  * ```
  */
 export const addUnit = (value?: string | number, unit = 'px'): string => {
-  if (!value) return ''
+  if (isNullish(value)) return ''
   if (isString(value)) return value
   return `${value}${unit}`
 }

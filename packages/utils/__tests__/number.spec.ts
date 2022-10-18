@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { between } from '@sa-ui/utils';
+import { describe, it, expect } from 'vitest'
+import { between } from '@sa-ui/utils'
 
 
 describe('number', () => {
