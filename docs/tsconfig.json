@@ -25,10 +25,6 @@
       "~/*": ["src/*"]
     }
   },
-  "include": [
-    "./*.ts",
-    "./.vitepress/**/*.ts",
-    "./.vitepress/**/*.vue"
-  ],
-  "exclude": ["dist","node_modules"]
+  "include": ["./*.ts", "./.vitepress/**/*.ts", "./.vitepress/**/*.vue"],
+  "exclude": ["dist", "node_modules"]
 }

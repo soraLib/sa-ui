@@ -1,5 +1,5 @@
-import type { UserConfig } from 'vitepress'
 import { mdPlugin } from './config/plugins'
+import type { UserConfig } from 'vitepress'
 
 const Guide = [
   {
@@ -9,17 +9,17 @@ const Guide = [
   {
     text: 'FAQ',
     link: '/guide/faq',
-  }
+  },
 ]
 
 const Components = [
   {
     text: 'Input',
-    link: '/component/input'
+    link: '/component/input',
   },
   {
     text: 'Fab',
-    link: '/component/fab'
+    link: '/component/fab',
   },
 ]
 
@@ -27,14 +27,14 @@ const slidebars = [
   {
     text: 'Guide',
     children: Guide.map((e) => {
-      (e as any).useLinkText = `${e.text} | Guide`
+      ;(e as any).useLinkText = `${e.text} | Guide`
       return e
     }),
   },
   {
     text: 'Component',
     children: Components.map((e) => {
-      (e as any).useLinkText = `${e.text} | Component`
+      ;(e as any).useLinkText = `${e.text} | Component`
       return e
     }),
   },
@@ -43,6 +43,7 @@ const slidebars = [
 const config: UserConfig = {
   title: 'Sa UI',
   description: 'a Vue 3 based component library.',
+  appearance: false,
   lang: 'en-US',
   base: '/',
   head: [

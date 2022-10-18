@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRouter } from 'vitepress'
 
 const props = defineProps<{
@@ -11,16 +12,20 @@ const router = useRouter()
 const isExternal = computed(() => props.external === true)
 
 const navigate = () => {
-  if (isExternal.value)
-    window.open(props.href, '_blank', 'noreferrer noopener')
-  else
-    router.go(props.href)
+  if (isExternal.value) window.open(props.href, '_blank', 'noreferrer noopener')
+  else router.go(props.href)
 }
 </script>
 
 <template>
   <li class="li-anchor" :class="[{ external: isExternal }]">
-    <div role="link" tabindex="0" class="li-anchor-container" @click="navigate" @keydown.enter="navigate">
+    <div
+      role="link"
+      tabindex="0"
+      class="li-anchor-container"
+      @click="navigate"
+      @keydown.enter="navigate"
+    >
       <span v-if="$slots.heading" class="heading-text">
         <slot name="heading" />
       </span>
@@ -65,6 +70,6 @@ const navigate = () => {
   text-decoration: underline;
 }
 .li-anchor-link + .li-anchor-external:before {
-  content: " ";
+  content: ' ';
 }
 </style>

@@ -1,9 +1,5 @@
 <template>
-  <a
-    class="nav-bar-title"
-    href="/"
-    aria-label="Sa UI, back to home`"
-  >
+  <a class="nav-bar-title" href="/" aria-label="Sa UI, back to home`">
     <span class="title">Sa UI</span>
   </a>
 </template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useData } from 'vitepress'
 import { useLocaleLinks } from '../composables/nav'
 
@@ -26,7 +27,7 @@ const show = computed(() => links.value)
 
 <style scoped>
 .nav-links {
-  padding: .75rem 0;
+  padding: 0.75rem 0;
   border-bottom: 1px solid var(--c-divider);
 }
 

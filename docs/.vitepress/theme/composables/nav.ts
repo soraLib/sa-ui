@@ -10,13 +10,11 @@ export function useLocaleLinks() {
     const theme = site.value.themeConfig as DefaultTheme.Config
     const locales = theme.locales
 
-    if (!locales)
-      return null
+    if (!locales) return null
 
     const localeKeys = Object.keys(locales)
 
-    if (localeKeys.length <= 1)
-      return null
+    if (localeKeys.length <= 1) return null
 
     // handle site base
     const siteBase = inBrowser ? site.value.base : '/'
@@ -33,7 +31,7 @@ export function useLocaleLinks() {
     })
 
     const currentContentPath = currentLangBase
-      ? routerPath.substring(currentLangBase.length - 1)
+      ? routerPath.slice(Math.max(0, currentLangBase.length - 1))
       : routerPath
 
     const candidates = localeKeys.map((v) => {

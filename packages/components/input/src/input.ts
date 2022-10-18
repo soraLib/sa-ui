@@ -1,16 +1,18 @@
-import type Input from './input.vue'
-import { UPDATE_EVENT, FOCUS_EVENT, BLUR_EVENT, CHANGE_EVENT } from '@sa-ui/constants'
 import { isString } from '@vue/shared'
+import {
+  BLUR_EVENT,
+  CHANGE_EVENT,
+  FOCUS_EVENT,
+  UPDATE_EVENT,
+} from '@sa-ui/constants'
+import type Input from './input.vue'
 
 export const inputProps = {
   // TODO: build props util
   modelValue: {
-    type: [
-      String,
-      Number,
-    ],
+    type: [String, Number],
     default: '',
- }
+  },
 }
 export type InputProps = typeof inputProps
 

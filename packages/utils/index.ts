@@ -1,1 +1,5 @@
 export * from './insatll'
+export * from './dom'
+export * from './number'
+export * from './function'
+export * from './vue'

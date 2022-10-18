@@ -3,9 +3,7 @@ import { defineConfig } from 'vite-plugin-windicss'
 export default defineConfig({
   preflight: false,
   extract: {
-    include: [
-      '.vitepress/**/*.vue',
-    ],
+    include: ['.vitepress/**/*.vue', 'examples/**/*.vue'],
   },
   theme: {
     extend: {

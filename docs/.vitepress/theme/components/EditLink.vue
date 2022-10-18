@@ -6,8 +6,14 @@ const { url, text } = useEditLink()
 
 <template>
   <div class="edit-link">
-    <a v-if="url" class="link" :href="url" target="_blank" rel="noopener noreferrer">
-      <carbon-edit class="align-middle" style="opacity:0.75" /> {{ text }}
+    <a
+      v-if="url"
+      class="link"
+      :href="url"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <carbon-edit class="align-middle" style="opacity: 0.75" /> {{ text }}
     </a>
   </div>
 </template>

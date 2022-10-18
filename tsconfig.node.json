@@ -6,8 +6,6 @@
     "types": ["node"],
     "skipLibCheck": true
   },
-  "include": [
-    "packages/sa-ui/package.json"
-  ],
+  "include": ["packages/sa-ui/package.json"],
   "exclude": ["**/__tests__/**", "**/tests/**", "**/dist"]
 }

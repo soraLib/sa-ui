@@ -4,31 +4,26 @@ import WindiCSS from 'vite-plugin-windicss'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { VitePWA } from 'vite-plugin-pwa'
-import { MarkdownTransform } from './.vitepress/plugins/markdown-transform'
 import DefineOptions from 'unplugin-vue-define-options/vite'
+import { MarkdownTransform } from './.vitepress/plugins/markdown-transform'
 
 export default defineConfig({
   build: {
     ssrManifest: false,
-    manifest: false
+    manifest: false,
   },
   optimizeDeps: {
-    exclude: [
-      'vue-global-api',
-      '@vueuse/core'
-    ]
+    exclude: ['vue-global-api', '@vueuse/core'],
   },
   server: {
     hmr: {
-      overlay: false
-    }
+      overlay: false,
+    },
   },
   plugins: [
     DefineOptions(),
     Components({
-      dirs: [
-        '.vitepress/theme/components'
-      ],
+      dirs: ['.vitepress/theme/components'],
       // allow auto load markdown components under `./src/components/`
       extensions: ['vue', 'md'],
 
@@ -40,10 +35,10 @@ export default defineConfig({
       // auto import icons
       resolvers: [
         IconsResolver({
-          componentPrefix: ''
+          componentPrefix: '',
           // enabledCollections: ['carbon'],
-        })
-      ]
+        }),
+      ],
     }),
     Icons({}),
     WindiCSS(),
@@ -60,7 +55,7 @@ export default defineConfig({
         'banner_dark.svg',
         'icon_light.svg',
         'icon_dark.svg',
-        'prompt-update.png'
+        'prompt-update.png',
       ],
       manifest: {
         id: '/',
@@ -72,20 +67,20 @@ export default defineConfig({
           {
             src: 'pwa-192x192.png',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'pwa-512x512.png',
             sizes: '512x512',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'icon_light.svg',
             sizes: '155x155',
             type: 'image/svg',
-            purpose: 'any maskable'
-          }
-        ]
+            purpose: 'any maskable',
+          },
+        ],
       },
       workbox: {
         runtimeCaching: [
@@ -96,12 +91,12 @@ export default defineConfig({
               cacheName: 'google-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
+                statuses: [0, 200],
+              },
+            },
           },
           {
             urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
@@ -110,15 +105,15 @@ export default defineConfig({
               cacheName: 'gstatic-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          }
-        ]
-      }
-    })
-  ]
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
+      },
+    }),
+  ],
 })

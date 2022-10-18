@@ -134,7 +134,7 @@ ul {
 a,
 area,
 button,
-[role="button"],
+[role='button'],
 input,
 label,
 select,
@@ -282,7 +282,6 @@ form {
 
 .version-img {
   text-align: center;
-
 }
 
 html.dark .version-img {
@@ -299,4 +298,3 @@ details summary {
 details summary strong {
   color: var(--c-brand-active);
 }
-

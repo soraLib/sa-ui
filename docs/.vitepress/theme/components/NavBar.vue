@@ -19,7 +19,13 @@ defineEmits(['toggle'])
 
     <div class="nav-icons">
       <div class="item">
-        <a class="icon-button" href="https://github.com/soraLib/sa-ui" target="_blank" rel="noopener" aria-label="View GitHub Repo">
+        <a
+          class="icon-button"
+          href="https://github.com/soraLib/sa-ui"
+          target="_blank"
+          rel="noopener"
+          aria-label="View GitHub Repo"
+        >
           <carbon-logo-github />
         </a>
       </div>
@@ -33,7 +39,7 @@ defineEmits(['toggle'])
   </header>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .nav-bar {
   position: fixed;
   top: 0;

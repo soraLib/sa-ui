@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { DefaultTheme } from '../config'
+import { toRefs } from 'vue'
 import { useNavLink } from '../composables/navLink'
+import type { DefaultTheme } from '../config'
 
 const props = defineProps<{
   item: DefaultTheme.NavItemWithLink
