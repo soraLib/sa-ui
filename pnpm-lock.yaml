@@ -16,7 +16,7 @@ importers:
       '@types/sass': ^1.43.1
       '@vitejs/plugin-vue': ^3.1.2
       '@vitejs/plugin-vue-jsx': ^2.0.1
-      '@vitest/ui': ^0.23.4
+      '@vitest/ui': ^0.24.0
       '@vue/test-utils': ^2.1.0
       '@vue/tsconfig': ^0.1.3
       '@vueuse/core': 9.3.1
@@ -55,7 +55,7 @@ importers:
       '@types/sass': 1.43.1
       '@vitejs/plugin-vue': 3.1.2_vue@3.2.41
       '@vitejs/plugin-vue-jsx': 2.0.1_vue@3.2.41
-      '@vitest/ui': 0.23.4
+      '@vitest/ui': 0.24.3
       '@vue/test-utils': 2.1.0_vue@3.2.41
       '@vue/tsconfig': 0.1.3_@types+node@18.11.0
       cz-git: 1.3.11
@@ -75,7 +75,7 @@ importers:
       tsx: 3.10.1
       typescript: 4.8.4
       unplugin-vue-define-options: 0.12.1
-      vitest: 0.23.4_wauvpioppfbwpxqsxzbcisyx6e
+      vitest: 0.23.4_77pornmwtppca6gbma7p22376m
       vue: 3.2.41
       vue-tsc: 1.0.8_typescript@4.8.4
 
@@ -2351,8 +2351,8 @@ packages:
       vue: 3.2.41
     dev: true
 
-  /@vitest/ui/0.23.4:
-    resolution: {integrity: sha512-lNZVTTrkHThGAwNQ1ah1qCNnm70r7OLB5LCUdSqboStve/1eKTrtt27QfDSSUTG8AVJQzU0eaN/j8UocH+CqfA==}
+  /@vitest/ui/0.24.3:
+    resolution: {integrity: sha512-f5agYA/sdkiipq42TZayJoeUGjWx+opDjIVeNnb1SG2BNxqObFqh6GuJlzpGHerg4a2+ZSoVo4f4p2+dEyXPmg==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -7216,7 +7216,7 @@ packages:
       - terser
     dev: true
 
-  /vitest/0.23.4_wauvpioppfbwpxqsxzbcisyx6e:
+  /vitest/0.23.4_77pornmwtppca6gbma7p22376m:
     resolution: {integrity: sha512-iukBNWqQAv8EKDBUNntspLp9SfpaVFbmzmM0sNcnTxASQZMzRw3PsM6DMlsHiI+I6GeO5/sYDg3ecpC+SNFLrQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -7241,7 +7241,7 @@ packages:
       '@types/chai': 4.3.3
       '@types/chai-subset': 1.3.3
       '@types/node': 18.11.0
-      '@vitest/ui': 0.23.4
+      '@vitest/ui': 0.24.3
       chai: 4.3.6
       debug: 4.3.4
       jsdom: 20.0.1
