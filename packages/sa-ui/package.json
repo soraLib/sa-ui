@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/node": "*",
-    "vue": "3.2.40"
+    "vue": "3.2.41"
   },
   "browserslist": [
     "> 1%",
