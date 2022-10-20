@@ -22,7 +22,7 @@
     "dayjs": "1.11.5"
   },
   "devDependencies": {
-    "@types/node": "*",
+    "@types/node": "18.11.2",
     "vue": "3.2.40"
   },
   "browserslist": [
