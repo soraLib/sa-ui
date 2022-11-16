@@ -5,6 +5,7 @@
     </span>
 
     <input
+      v-bind="attrs"
       :value="modelValue"
       @input="handleInput"
       @change="handleChange"
@@ -19,6 +20,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useAttrs } from 'vue'
 import {
   BLUR_EVENT,
   CHANGE_EVENT,
@@ -33,6 +35,8 @@ defineOptions({
 
 defineProps(inputProps)
 const emit = defineEmits(inputEmits)
+
+const attrs = useAttrs()
 
 type TargetElement = HTMLInputElement | HTMLTextAreaElement
 const handleInput = (event: Event) => {
