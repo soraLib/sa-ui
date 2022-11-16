@@ -21,6 +21,10 @@ const Components = [
     text: 'Fab',
     link: '/component/fab',
   },
+  {
+    text: 'Text',
+    link: '/component/text',
+  },
 ]
 
 const slidebars = [

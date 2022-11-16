@@ -14,8 +14,8 @@
     "test:coverage": "vitest --coverage",
     "dev": "vite --config vitest.config.ts",
     "format": "prettier --write .",
-    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.md,.json --max-warnings 0 && pretty-quick --check --branch dev",
-    "lint:fix": "eslint --fix . --ext .vue,.js,.ts,.jsx,.tsx,.md,.json && pretty-quick --branch dev",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.md,.json --max-warnings 0 && pretty-quick --check --branch main",
+    "lint:fix": "eslint --fix . --ext .vue,.js,.ts,.jsx,.tsx,.md,.json && pretty-quick --branch main",
     "prepare": "husky install"
   },
   "peerDependencies": {
@@ -59,7 +59,7 @@
     "unplugin-vue-define-options": "^0.12.1",
     "vitest": "^0.23.4",
     "vue": "^3.2.41",
-    "vue-tsc": "^1.0.8"
+    "vue-tsc": "^1.0.9"
   },
   "engines": {
     "node": ">= 16"
