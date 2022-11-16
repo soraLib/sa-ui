@@ -6,7 +6,7 @@
 import { textProps } from './text'
 
 defineOptions({
-  name: 'SInput',
+  name: 'SText',
 })
 
 defineProps(textProps)
