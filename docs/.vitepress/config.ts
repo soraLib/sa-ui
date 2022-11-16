@@ -22,6 +22,10 @@ const Components = [
     link: '/component/fab',
   },
   {
+    text: 'Grid',
+    link: '/component/grid',
+  },
+  {
     text: 'Text',
     link: '/component/text',
   },
