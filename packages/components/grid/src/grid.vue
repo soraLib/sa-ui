@@ -1,18 +1,20 @@
 <template>
   <div class="s-grid">
-    <div
-      v-for="(row, ri) in cellGrid"
-      :key="ri"
-      class="s-grid-row"
-      :style="gridRowStyle"
-    >
-      <Component
-        :is="cell.vnode"
-        v-for="(cell, ci) in row"
-        :key="`${cell.style['width']}-${ci}`"
-        :style="cell.style"
-      />
-    </div>
+    <slot v-if="disabled" />
+    <template v-else>
+      <div
+        v-for="(row, ri) in cellGrid"
+        :key="ri"
+        class="s-grid-row"
+        :style="gridRowStyle"
+      >
+        <Component
+          :is="cell.vnode"
+          v-for="(cell, ci) in row"
+          :key="`${cell.style['width']}-${ci}`"
+          :style="cell.style"
+        /></div
+    ></template>
   </div>
 </template>
 
