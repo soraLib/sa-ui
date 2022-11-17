@@ -24,13 +24,3 @@ export const calcRealSize = (
     remainder,
   }
 }
-
-// TODO: move into utils
-export const group = <T>(list: T[], count: number): T[][] => {
-  const result: T[][] = []
-  for (let i = 0, len = list.length; i < len; i += count) {
-    result.push(list.slice(i, i + 3))
-  }
-
-  return result
-}

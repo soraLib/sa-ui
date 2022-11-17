@@ -18,9 +18,9 @@
 
 <script lang="ts" setup>
 import { computed, useSlots } from 'vue'
-import { addUnit } from '@sa-ui/utils'
+import { addUnit, group } from '@sa-ui/utils'
 import { gridProps } from './grid'
-import { calcRealSize, group } from './size'
+import { calcRealSize } from './size'
 import type { CSSProperties, VNodeChild } from 'vue'
 
 defineOptions({
