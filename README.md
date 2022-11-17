@@ -8,6 +8,8 @@ A Vue3 based component library.
   - [ ] input
   - [ ] select
   - [ ] fab
+  - [ ] grid
+  - [ ] text
   - [ ] and more...
 - [ ] tests
 - [ ] docs
