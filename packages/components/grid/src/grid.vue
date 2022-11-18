@@ -1,20 +1,18 @@
 <template>
-  <div class="s-grid">
-    <slot v-if="disabled" />
-    <template v-else>
-      <div
-        v-for="(row, ri) in cellGrid"
-        :key="ri"
-        class="s-grid-row"
-        :style="gridRowStyle"
-      >
-        <Component
-          :is="cell.vnode"
-          v-for="(cell, ci) in row"
-          :key="`${cell.style['width']}-${ci}`"
-          :style="cell.style"
-        /></div
-    ></template>
+  <div class="s-grid" :class="[{ 'is-disabled': disabled }]">
+    <div
+      v-for="(row, ri) in groups"
+      :key="ri"
+      class="s-grid-row"
+      :style="gridRowStyle"
+    >
+      <Component
+        :is="cell"
+        v-for="(cell, ci) in row"
+        :key="`${row.length}-${ci}`"
+        :style="cellStyle(ri)"
+      />
+    </div>
   </div>
 </template>
 
@@ -44,33 +42,23 @@ const gridRowStyle = computed<CSSProperties>(() => ({
   height: addUnit(100 / realSize.value[0], '%'),
 }))
 
-const groupedVNodes = computed(() =>
+const groups = computed(() =>
   group(vnodes.value as VNodeChild[], realSize.value[1])
 )
 
-type Cell = {
-  style: CSSProperties
-  vnode: VNodeChild
-}
-
-type CellGrid = Cell[][]
-const cellGrid = computed<CellGrid>(() =>
-  groupedVNodes.value.map((cells, row): Cell[] =>
-    cells.map((cell) => ({
-      style: {
+const cellStyle = (row: number): CSSProperties =>
+  props.disabled
+    ? {}
+    : {
         width: addUnit(
           100 /
-            (row === groupedVNodes.value.length - 1
+            (row === groups.value.length - 1
               ? realReminder.value
               : realSize.value[1]),
           '%'
         ),
         height: addUnit(100, '%'),
-      },
-      vnode: cell,
-    }))
-  )
-)
+      }
 
 // TODO: splits vnodes into pages
 // const pages =
@@ -83,6 +71,12 @@ const cellGrid = computed<CellGrid>(() =>
 
   .s-grid-row {
     display: flex;
+  }
+}
+
+.is-disabled {
+  .s-grid-row {
+    display: block;
   }
 }
 </style>
