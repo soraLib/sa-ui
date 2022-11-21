@@ -7,9 +7,9 @@
       :style="gridRowStyle"
     >
       <Component
-        :is="cell"
+        :is="() => cell"
         v-for="(cell, ci) in row"
-        :key="`${row.length}-${ci}`"
+        :key="ci"
         :style="cellStyle(ri)"
       />
     </div>
@@ -30,8 +30,8 @@ const props = defineProps(gridProps)
 
 const slots = useSlots()
 
-const defaultSlot = slots.default
-const vnodes = computed(() => defaultSlot?.()[0].children ?? []) // TODO: if slot is string
+const defaultSlot = computed(() => slots.default?.() ?? null)
+const vnodes = computed(() => defaultSlot.value?.[0].children ?? []) // TODO: if slot is string
 
 const total = computed(() => vnodes.value.length as number) // TODO: if slot is string
 const real = computed(() => calcRealSize(props.size, total.value))
