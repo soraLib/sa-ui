@@ -8,6 +8,8 @@ declare module '@vue/runtime-core' {
     SFab: typeof import('../packages/sa-ui')['SFab']
     SGrid: typeof import('../packages/sa-ui')['SGrid']
     SText: typeof import('../packages/sa-ui')['SText']
+    SDock: typeof import('../packages/sa-ui')['SDock']
+    SDockPanel: typeof import('../packages/sa-ui')['SDockPanel']
   }
 
   // TODO: interface ComponentCustomProperties {}
