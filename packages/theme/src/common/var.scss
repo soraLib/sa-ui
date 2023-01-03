@@ -82,3 +82,13 @@ $fab: map.merge(
   ),
   $fab
 );
+
+// Dock
+// css3 var in packages/theme/src/dock.scss
+$dock-panel: () !default;
+$dock-panel: map.merge(
+  (
+    'border-color': getCssVar('border-color'),
+  ),
+  $dock-panel
+);

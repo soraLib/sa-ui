@@ -1,0 +1,54 @@
+@use 'sass:map';
+
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(dock-panel) {
+  @include set-component-css-var('dock-panel', $dock-panel);
+
+  position: relative;
+  display: flex;
+
+  @include when(draggable) {
+    @include e(header) {
+      cursor: move;
+    }
+  }
+
+  @include when(gluing) {
+    opacity: 0.5;
+  }
+
+  @include e(header) {
+    position: relative;
+    padding: 4px 8px;
+    border-bottom: 1px solid getCssVar('border-color');
+  }
+
+  @include e(body) {
+    padding: 4px 8px;
+  }
+
+  @include e(glue) {
+    background-color: blue;
+    width: 12px;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    z-index: 1;
+
+    &.is-before {
+      left: 0;
+    }
+    &.is-after {
+      right: 0;
+    }
+  }
+
+  @include e(glue) {
+    &.is-gluing {
+      opacity: 0.5;
+    }
+  }
+}

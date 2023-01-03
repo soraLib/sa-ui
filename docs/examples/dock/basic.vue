@@ -1,9 +1,11 @@
 <template>
   <s-dock class="bg-gray-400 dock-wrapper">
-    <s-dock-panel title="pane-A" direction="row">Pane A Content</s-dock-panel>
-    <s-dock-panel title="pane-B" direction="row">Pane B Content</s-dock-panel>
-
-    <template #workspace> workspace </template>
+    <s-dock-panel name="pane-A">Pane A Content</s-dock-panel>
+    <s-dock-panel name="pane-B">Pane B Content</s-dock-panel>
+    <s-dock-panel :workspace="true" name="workspace"
+      >Workspace Content</s-dock-panel
+    >
+    <s-dock-panel name="pane-c">Pane c Content</s-dock-panel>
   </s-dock>
 </template>
 

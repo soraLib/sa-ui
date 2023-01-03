@@ -63,6 +63,14 @@
   }
 }
 
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
 @mixin inset-input-border($color, $important: false) {
   @if $important == true {
     box-shadow: 0 0 0 1px $color inset !important;
