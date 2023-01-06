@@ -1,44 +1,38 @@
-import { computed, provide, reactive, ref, useSlots } from 'vue'
-import { valuesOf } from '@sa-ui/utils'
+import { computed, provide, ref, useSlots, watch } from 'vue'
+import { orderBy } from '@sa-ui/utils'
 import { dockRootContextKey } from './dock'
-import type { DockPanelProps, DockState } from './dock-panel'
-import type { ElementSize } from '@vueuse/core'
+import type { DockPanelProps } from './dock-panel'
 import type {
-  DockDirection,
   DockEmits,
   DockPanelContext,
   DockProps,
-} from './dock'
+  PanelState,
+} from '@sa-ui/components'
 import type { ComputedRef, Ref, SetupContext } from 'vue'
 
-export type PanelState = {
-  name: string
-  // position: Position
-  size: ElementSize
-  collapsed: boolean
-  // nested parent panel id
-  nested: number | undefined
-  direction: DockDirection
-  dock: DockState
-  isDragging: boolean
-  isGluing: boolean
+const usePanelStyle = (props: DockPanelProps) => {
+  if (props.workspace)
+    return {
+      flexGrow: 1,
+    }
+
+  return {}
 }
-// panel name -> panel state
-export type PanelStates = Record<string, Ref<PanelState>>
 
 export const useDock = (
   props: DockProps,
   emit: SetupContext<DockEmits>['emit']
 ): {
   root: Ref<HTMLDivElement | undefined>
-  panels: ComputedRef<DockPanelContext[]>
+  panels: Ref<DockPanelContext[]>
+  orderedPanels: ComputedRef<DockPanelContext[]>
 } => {
   const root = ref<HTMLDivElement>()
   const slots = useSlots()
 
-  const panelSlots = computed(() => slots.default?.() ?? [])
-  const panels = computed(() =>
-    panelSlots.value.map((slot): DockPanelContext => {
+  const panelSlots = slots.default?.() ?? []
+  const panels = ref<DockPanelContext[]>(
+    panelSlots.map((slot): DockPanelContext => {
       const props = slot.props as DockPanelProps
 
       return {
@@ -46,43 +40,64 @@ export const useDock = (
         props,
         style: usePanelStyle(props),
         clazz: [],
+        state: null,
       }
     })
   )
-  const usePanelStyle = (props: DockPanelProps) => {
-    if (props.workspace)
-      return {
-        flexGrow: 1,
-      }
-
-    return {}
+  const panelorders = ref<string[]>()
+  const order = (orders: string[]) => {
+    panelorders.value = orders
   }
 
-  const states: PanelStates = reactive({})
-  const registerPanel = (state: Ref<PanelState>) => {
-    states[state.value.name] = state
+  const orderedPanels = computed(() => {
+    if (!panelorders.value) return panels.value
+
+    return orderBy(panels.value, ['props', 'name'], panelorders.value)
+  })
+  const orderedDockedPanels = computed(() =>
+    orderedPanels.value.filter((panel) => {
+      return panel.state?.dock !== 'floating'
+    })
+  )
+
+  const registerPanel = (state: PanelState) => {
+    panels.value.find((panel) => panel.props.name === state.name)!.state = state
   }
   const unregisterPanel = (name: string) => {
-    delete states[name]
+    //
   }
   const isDragging = computed(() =>
-    valuesOf(states).some((state) => state.isDragging)
+    panels.value.some((panel) => panel.state?.isDragging)
   )
   const isGluing = computed(() =>
-    valuesOf(states).some((state) => state.isGluing)
+    panels.value.some((panel) => panel.state?.isGluing)
   )
+
+  const lastDragged = ref<PanelState>()
+  watch(isDragging, (isDragging) => {
+    if (isDragging) {
+      lastDragged.value =
+        panels.value.find((panel) => panel.state?.isDragging)?.state ??
+        undefined
+    }
+  })
 
   provide(dockRootContextKey, {
     root,
-    states,
+    panels,
+    orderedPanels,
+    orderedDockedPanels,
     isDragging,
     isGluing,
+    lastDragged,
     registerPanel,
     unregisterPanel,
+    order,
   })
 
   return {
     root,
     panels,
+    orderedPanels,
   }
 }

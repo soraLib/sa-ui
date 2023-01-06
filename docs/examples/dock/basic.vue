@@ -5,7 +5,7 @@
     <s-dock-panel :workspace="true" name="workspace"
       >Workspace Content</s-dock-panel
     >
-    <s-dock-panel name="pane-c">Pane c Content</s-dock-panel>
+    <s-dock-panel name="pane-C">Pane c Content</s-dock-panel>
   </s-dock>
 </template>
 

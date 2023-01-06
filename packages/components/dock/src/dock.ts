@@ -9,8 +9,8 @@ import type {
   VNode,
 } from 'vue'
 import type { Arrayable } from '@sa-ui/utils'
-import type { PanelState, PanelStates } from './use-dock'
-import type { DockPanelProps } from '@sa-ui/components/dock'
+import type { DockPanelProps, DockState } from '@sa-ui/components'
+import type { ElementSize } from '@vueuse/core'
 
 export type DockDirection = 'row' | 'column'
 export const dockProps = buildProps({
@@ -31,14 +31,31 @@ export type DockPanelContext = UnwrapRef<{
   props: DockPanelProps
   style: CSSProperties
   clazz: Arrayable<string>
+  state: PanelState | null
 }>
 
+export type PanelState = {
+  name: string
+  // TODO: position: Position
+  size: ElementSize
+  collapsed: boolean
+  // TODO: nested parent panel id
+  nested: number | undefined
+  direction: DockDirection
+  dock: DockState
+  isDragging: boolean
+  isGluing: boolean
+}
 export type DockRootContext = {
   root: Ref<HTMLElement | undefined>
-  states: PanelStates
+  panels: Ref<DockPanelContext[]>
+  orderedPanels: ComputedRef<DockPanelContext[]>
+  orderedDockedPanels: ComputedRef<DockPanelContext[]>
+  lastDragged: Ref<PanelState | undefined>
   isDragging: ComputedRef<boolean>
   isGluing: ComputedRef<boolean>
-  registerPanel: (state: Ref<PanelState>) => void
+  order: (orders: string[]) => void
+  registerPanel: (state: PanelState) => void
   unregisterPanel: (name: string) => void
 }
 

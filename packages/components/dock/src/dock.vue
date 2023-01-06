@@ -1,8 +1,11 @@
 <template>
-  <div ref="root" class="s-dock">
+  <h3>order</h3>
+  {{ panels.map((p) => p.props.name).join(' - ') }}
+
+  <div ref="root" class="s-dock" v-bind="$attrs">
     <Component
       :is="panel.slot"
-      v-for="panel in panels"
+      v-for="panel in orderedPanels"
       :key="panel.props.name"
       :style="panel.style"
       :class="panel.clazz"
@@ -20,12 +23,13 @@ defineOptions({
 const props = defineProps(dockProps)
 const emit = defineEmits(dockEmits)
 
-const { root, panels } = useDock(props, emit)
+const { root, panels, orderedPanels } = useDock(props, emit)
 </script>
 
 <style lang="scss" scoped>
 .s-dock {
   display: flex;
   position: relative;
+  height: 400px;
 }
 </style>
