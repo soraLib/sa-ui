@@ -64,7 +64,7 @@ export const useDock = (
     panels.value.find((panel) => panel.props.name === state.name)!.state = state
   }
   const unregisterPanel = (name: string) => {
-    //
+    panels.value.find((panel) => panel.props.name === name)!.state = null
   }
   const isDragging = computed(() =>
     panels.value.some((panel) => panel.state?.isDragging)
@@ -75,11 +75,10 @@ export const useDock = (
 
   const lastDragged = ref<PanelState>()
   watch(isDragging, (isDragging) => {
-    if (isDragging) {
+    if (isDragging)
       lastDragged.value =
         panels.value.find((panel) => panel.state?.isDragging)?.state ??
         undefined
-    }
   })
 
   provide(dockRootContextKey, {
