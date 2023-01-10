@@ -1,0 +1,45 @@
+@use 'sass:map';
+
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(resize) {
+  @include set-component-css-var('resize', $resize);
+}
+
+@include b(resize) {
+  position: relative;
+  overflow: hidden;
+
+  @include e(stick) {
+    position: absolute;
+    transition: getCssVar('transition-duration') background-color;
+
+    &:hover {
+      background-color: var(
+        #{getCssVarName('resize-hover-bg-color')},
+        map.get($resize, 'hover-bg-color')
+      );
+      opacity: var(
+        #{getCssVarName('resize-hover-opacity')},
+        map.get($resize, 'hover-opacity')
+      );
+    }
+
+    @include when(right) {
+      right: 0;
+      bottom: 0;
+      width: 8px;
+      height: 100%;
+      cursor: ew-resize;
+    }
+    @include when(left) {
+      left: 0;
+      top: 0;
+      width: 8px;
+      height: 100%;
+      cursor: ew-resize;
+    }
+  }
+}

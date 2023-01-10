@@ -30,6 +30,10 @@ const Components = [
     link: '/component/input',
   },
   {
+    text: 'Resize',
+    link: '/component/resize',
+  },
+  {
     text: 'Text',
     link: '/component/text',
   },
