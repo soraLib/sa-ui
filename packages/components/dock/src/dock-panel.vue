@@ -1,59 +1,62 @@
 <template>
-  <div
-    ref="dockPanel"
-    :class="[
-      's-dock-panel',
-      {
-        'is-draggable': !workspace,
-        'is-dragging': isDragging,
-        'is-gluing': isGluing,
-      },
-    ]"
+  <SResize
+    :direction="resizeDirection"
+    :initial-size="{ height: panel.size.height, width: panel.size.width }"
     :style="dockStyle"
+    @resizing="handleResizing"
   >
     <div
-      v-if="isDocked && !isAfterWorkspace"
-      ref="glueBefore"
+      ref="dockPanel"
       :class="[
-        's-dock-panel__glue',
-        'is-before',
+        's-dock-panel',
         {
-          'is-gluing': isGlueBeforeGluing,
+          'is-draggable': !workspace,
+          'is-dragging': isDragging,
+          'is-gluing': isGluing,
         },
       ]"
-    />
-    <div class="s-dock-panel__inner">
-      <div v-if="!workspace" class="s-dock-panel__header">{{ name }}</div>
+    >
+      <div
+        v-if="isDocked && !isAfterWorkspace"
+        ref="glueBefore"
+        :class="[
+          's-dock-panel__glue',
+          'is-before',
+          {
+            'is-gluing': isGlueBeforeGluing,
+          },
+        ]"
+      />
+      <div class="s-dock-panel__inner">
+        <div v-if="!workspace" class="s-dock-panel__header">{{ name }}</div>
 
-      <div class="s-dock-panel__body">
-        <div v-if="isBeforeWorkspace">isBeforeWorkspace</div>
-        <slot />
-
-        <div v-if="isAfterWorkspace">isAfterWorkspace</div>
+        <div class="s-dock-panel__body">
+          <slot />
+        </div>
       </div>
+      <div
+        v-if="isDocked && !isBeforeWorkspace"
+        ref="glueAfter"
+        :class="[
+          's-dock-panel__glue',
+          'is-after',
+          {
+            'is-gluing': isGlueAfterGluing,
+          },
+        ]"
+      />
     </div>
-    <div
-      v-if="isDocked && !isBeforeWorkspace"
-      ref="glueAfter"
-      :class="[
-        's-dock-panel__glue',
-        'is-after',
-        {
-          'is-gluing': isGlueAfterGluing,
-        },
-      ]"
-    />
-  </div>
+  </SResize>
 </template>
 
 <script lang="ts" setup>
 import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue'
-import { useDraggable, useMouseInElement } from '@vueuse/core'
+import { isNumber, useDraggable, useMouseInElement } from '@vueuse/core'
+import { SResize, dockRootContextKey } from '@sa-ui/components'
 import { addUnit, move, throwError } from '@sa-ui/utils'
-import { dockRootContextKey } from '@sa-ui/components'
 import { dockPanelProps } from './dock-panel'
 import type { DockPanelContext } from './dock'
-import type { PanelState } from '@sa-ui/components'
+import type { PanelState, ResizeDirection, ResizeSize } from '@sa-ui/components'
 import type { Position } from '@vueuse/core'
 import type { CSSProperties } from 'vue'
 
@@ -70,7 +73,7 @@ if (!dockRoot)
 const panel = ref<PanelState>({
   dock: 'docked',
   name: props.name,
-  size: { width: 0, height: 0 },
+  size: { width: 100, height: 400 },
   collapsed: false,
   nested: undefined,
   direction: 'row',
@@ -103,6 +106,18 @@ const isAfterWorkspace = computed(() => {
   )
   return dockRoot.orderedDockedPanels.value[current - 1]?.props.workspace
 })
+// Resize
+const resizeDirection = computed<ResizeDirection>(() => {
+  return dockRoot.orderedDockedPanels.value.find(
+    (panel) => panel.props.name === props.name || panel.props.workspace
+  )!.props.workspace
+    ? 'left'
+    : 'right'
+})
+const handleResizing = ({ width, height }: ResizeSize) => {
+  if (isNumber(width)) panel.value.size.width = width
+  if (isNumber(height)) panel.value.size.height = height
+}
 
 const isDocked = computed(() => panel.value.dock === 'docked')
 const isGluing = computed(() => dockRoot.isGluing.value && isDragging.value)
@@ -149,7 +164,10 @@ const backgroundColor = `#${`00000${Math.trunc(
   Math.random() * 0x1000000
 ).toString(16)}`.slice(-6)}`
 const dockStyle = computed(() => {
-  const styles: CSSProperties = { backgroundColor }
+  const styles: CSSProperties = {
+    backgroundColor,
+    minWidth: props.workspace ? 0 : addUnit(panel.value.size.width),
+  }
 
   if (panel.value.dock === 'floating')
     Object.assign(styles, {
@@ -158,8 +176,6 @@ const dockStyle = computed(() => {
       userSelect: 'none',
       left: addUnit(dockPanelPosition.value.x),
       top: addUnit(dockPanelPosition.value.y),
-      width: addUnit(panel.value.size.width),
-      height: addUnit(panel.value.size.height),
       zIndex: 2,
     })
 

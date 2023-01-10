@@ -13,6 +13,8 @@ export const useStickResize = (
   }
 ) => {
   useEventListener(target, 'mousedown', (event: MouseEvent) => {
+    event.stopPropagation()
+    event.preventDefault()
     useStickResizing(unrefElement(target)!, {
       ...options,
       event,

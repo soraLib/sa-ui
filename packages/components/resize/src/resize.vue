@@ -23,10 +23,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { isString } from '@vue/shared'
 import { addUnit } from '@sa-ui/utils'
-import { resizeProps } from './resize'
+import { resizeEmits, resizeProps } from './resize'
 import { useStickResize } from './use-resize'
 import type { ResizeDirection } from './resize'
 import type { OnResizingFn } from './use-resize'
@@ -37,6 +37,7 @@ defineOptions({
 })
 
 const props = defineProps(resizeProps)
+const emit = defineEmits(resizeEmits)
 
 const leftResizable = ref(false)
 const topResizable = ref(false)
@@ -54,12 +55,27 @@ const updateResizable = (direction: ResizeDirection, enabled = true) => {
     bottomResizable.value = enabled
   }
 }
-
-if (isString(props.direction)) {
-  updateResizable(props.direction)
-} else {
-  props.direction?.forEach((pos) => updateResizable(pos, true))
+const reset = () => {
+  leftResizable.value = false
+  topResizable.value = false
+  rightResizable.value = false
+  bottomResizable.value = false
 }
+const initResizable = () => {
+  if (isString(props.direction)) {
+    updateResizable(props.direction)
+  } else {
+    props.direction?.forEach((d) => updateResizable(d, true))
+  }
+}
+initResizable()
+watch(
+  () => props.direction,
+  () => {
+    reset()
+    initResizable()
+  }
+)
 
 const resizeRef = ref<HTMLDivElement>()
 const leftStickRef = ref<HTMLDivElement>()
@@ -82,6 +98,7 @@ const resizeStyle = computed(() => {
 const onResizing: OnResizingFn = ({ width, height }) => {
   if (width) realSize.value.width = width
   if (height) realSize.value.height = height
+  emit('resizing', { width, height })
 }
 
 useStickResize(leftStickRef, {

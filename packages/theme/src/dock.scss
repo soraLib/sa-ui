@@ -9,6 +9,7 @@
 
   position: relative;
   display: flex;
+  height: 100%;
 
   @include when(draggable) {
     @include e(header) {
@@ -18,6 +19,10 @@
 
   @include when(gluing) {
     opacity: 0.5;
+  }
+
+  @include e(inner) {
+    width: 100%;
   }
 
   @include e(header) {
