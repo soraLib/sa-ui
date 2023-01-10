@@ -13,13 +13,19 @@
     @include set-css-color-type($colors, $type);
   }
 
+  // color-scheme
   // --s-border-color-#{$type}
   @include set-component-css-var('border-color', $border-color);
+  // --s-bg-color-#{$type}
+  @include set-component-css-var('bg-color', $bg-color);
+  // --s-text-color-#{$type}
+  @include set-component-css-var('text-color', $text-color);
+  @include set-component-css-var('text-color', $text-color);
 
-  @include set-css-var-value('border-color-hover', $border-color-hover);
-  @include set-css-var-value(
-    'border',
-    getCssVar('border-width') getCssVar('border-style')
-      getCssVar('border-color')
-  );
+  // Transition
+  // refer to this website to get the bezier motion function detail
+  // https://cubic-bezier.com/#p1,p2,p3,p4 (change px as your function parameter)
+  @include set-component-css-var('transition-duration', $transition-duration);
+  @include set-component-css-var('transition-function', $transition-function);
+  @include set-component-css-var('transition', $transition);
 }

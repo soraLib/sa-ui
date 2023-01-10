@@ -14,8 +14,8 @@ const Guide = [
 
 const Components = [
   {
-    text: 'Input',
-    link: '/component/input',
+    text: 'Dock',
+    link: '/component/dock',
   },
   {
     text: 'Fab',
@@ -24,6 +24,14 @@ const Components = [
   {
     text: 'Grid',
     link: '/component/grid',
+  },
+  {
+    text: 'Input',
+    link: '/component/input',
+  },
+  {
+    text: 'Resize',
+    link: '/component/resize',
   },
   {
     text: 'Text',

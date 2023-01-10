@@ -4,7 +4,8 @@ import WindiCSS from 'vite-plugin-windicss'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { VitePWA } from 'vite-plugin-pwa'
-import DefineOptions from 'unplugin-vue-define-options/vite'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import VueMacros from 'unplugin-vue-macros/vite'
 import { MarkdownTransform } from './.vitepress/plugins/markdown-transform'
 
 export default defineConfig({
@@ -21,7 +22,13 @@ export default defineConfig({
     },
   },
   plugins: [
-    DefineOptions(),
+    VueMacros({
+      setupComponent: false,
+      setupSFC: false,
+      plugins: {
+        vueJsx: vueJsx(),
+      },
+    }),
     Components({
       dirs: ['.vitepress/theme/components'],
       // allow auto load markdown components under `./src/components/`
