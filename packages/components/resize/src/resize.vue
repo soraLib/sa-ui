@@ -111,4 +111,14 @@ useStickResize(rightStickRef, {
   origin: realSize,
   onResizing,
 })
+useStickResize(topStickRef, {
+  direction: 'top',
+  origin: realSize,
+  onResizing,
+})
+useStickResize(bottomStickRef, {
+  direction: 'bottom',
+  origin: realSize,
+  onResizing,
+})
 </script>

@@ -9,9 +9,9 @@
     </s-resize>
   </div>
 
-  <div style="height: 300px">
+  <div class="mb-4">
     <s-resize
-      class="absolute right-0"
+      class="ml-auto"
       :initial-size="{ width: 300, height: 300 }"
       direction="left"
     >
@@ -19,6 +19,26 @@
         class="bg-light-50 h-full dark:bg-dark-50 flex items-center justify-center"
       >
         resize direction left
+      </div>
+    </s-resize>
+  </div>
+
+  <div class="mb-4">
+    <s-resize :initial-size="{ height: 100 }" direction="bottom">
+      <div
+        class="bg-light-50 h-full dark:bg-dark-50 flex items-center justify-center"
+      >
+        resize direction bottom
+      </div>
+    </s-resize>
+  </div>
+
+  <div>
+    <s-resize :initial-size="{ height: 100 }" direction="top">
+      <div
+        class="bg-light-50 h-full dark:bg-dark-50 flex items-center justify-center"
+      >
+        resize direction top
       </div>
     </s-resize>
   </div>

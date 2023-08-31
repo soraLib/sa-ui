@@ -39,22 +39,32 @@ const useStickResizing = (
     mouseY: options.event.screenY,
   }
 
-  const limitWidth = (to: number): number => {
-    if (to <= 0) return 0
+  const limitLength = (
+    to: number,
+    min = 0 /* TODO: max?: number */
+  ): number => {
+    if (to <= min) return min
     return to
   }
 
   const stickMove = (event: MouseEvent) => {
-    document.body.style.cursor = 'ew-resize' // FIXME: nw
-    const deltaX =
-      (options.direction === 'right' ? 1 : -1) * (event.screenX - origin.mouseX)
-    const deltaY = event.screenY - origin.mouseY
-    // TODO: vertical
-
-    options.onResizing({
-      width: limitWidth(origin.width! + deltaX),
-      // height: origin.height + deltaY,
-    })
+    if (options.direction === 'right' || options.direction === 'left') {
+      document.body.style.cursor = 'ew-resize'
+      const deltaX =
+        (options.direction === 'right' ? 1 : -1) *
+        (event.screenX - origin.mouseX)
+      options.onResizing({
+        width: limitLength(origin.width! + deltaX),
+      })
+    } else {
+      document.body.style.cursor = 'ns-resize'
+      const deltaY =
+        (options.direction === 'bottom' ? 1 : -1) *
+        (event.screenY - origin.mouseY)
+      options.onResizing({
+        height: limitLength(origin.height! + deltaY),
+      })
+    }
   }
   const addStickMoveListener = () => {
     document.documentElement.addEventListener('mousemove', stickMove)
