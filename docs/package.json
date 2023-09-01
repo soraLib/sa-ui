@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.1.122",
-    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-replace": "^5.0.0",
     "@types/escape-html": "^1.0.2",
     "@types/fs-extra": "^9.0.13",
     "@types/markdown-it": "^12.2.3",
