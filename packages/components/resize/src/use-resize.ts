@@ -1,36 +1,31 @@
-import { unrefElement, useEventListener } from '@vueuse/core'
-import type { ResizeDirection } from './resize'
+import { useEventListener } from '@vueuse/core'
 import type { Ref } from 'vue'
-import type { ElementSize, MaybeRef } from '@vueuse/core'
+import type { ResizeDirection } from './resize'
+import type { ElementSize, MaybeRefOrGetter } from '@vueuse/core'
 
 export type OnResizingFn = (size: { width?: number; height?: number }) => void
+export type UseStickOptions = {
+  direction: ResizeDirection
+  origin: Ref<Partial<ElementSize>>
+  onResizing: OnResizingFn
+  min?: number
+  max?: number
+}
 export const useStickResize = (
-  target: MaybeRef<HTMLElement | undefined>,
-  options: {
-    direction: ResizeDirection
-    origin: Ref<Partial<ElementSize>>
-    onResizing: OnResizingFn
-  }
+  target: MaybeRefOrGetter<HTMLElement | undefined | null>,
+  options: UseStickOptions
 ) => {
   useEventListener(target, 'mousedown', (event: MouseEvent) => {
     event.stopPropagation()
     event.preventDefault()
-    useStickResizing(unrefElement(target)!, {
+    useStickResizing({
       ...options,
       event,
     })
   })
 }
 
-const useStickResizing = (
-  target: HTMLElement,
-  options: {
-    direction: ResizeDirection
-    origin: Ref<Partial<ElementSize>>
-    onResizing: OnResizingFn
-    event: MouseEvent
-  }
-) => {
+const useStickResizing = (options: UseStickOptions & { event: MouseEvent }) => {
   // stick origin data
   const origin = {
     width: options.origin.value.width,
@@ -41,9 +36,11 @@ const useStickResizing = (
 
   const limitLength = (
     to: number,
-    min = 0 /* TODO: max?: number */
+    min = options.min ?? 0,
+    max?: number
   ): number => {
     if (to <= min) return min
+    if (max && to >= max) return max
     return to
   }
 
@@ -54,15 +51,16 @@ const useStickResizing = (
         (options.direction === 'right' ? 1 : -1) *
         (event.screenX - origin.mouseX)
       options.onResizing({
-        width: limitLength(origin.width! + deltaX),
+        width: limitLength(origin.width! + deltaX, options.min, options.max),
       })
     } else {
       document.body.style.cursor = 'ns-resize'
       const deltaY =
         (options.direction === 'bottom' ? 1 : -1) *
         (event.screenY - origin.mouseY)
+
       options.onResizing({
-        height: limitLength(origin.height! + deltaY),
+        height: limitLength(origin.height! + deltaY, options.min, options.max),
       })
     }
   }

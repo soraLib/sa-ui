@@ -23,9 +23,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref, unref, watch } from 'vue'
 import { isString } from '@vue/shared'
-import { addUnit } from '@sa-ui/utils'
+import { addUnit, isNullish } from '@sa-ui/utils'
 import { resizeEmits, resizeProps } from './resize'
 import { useStickResize } from './use-resize'
 import type { ResizeDirection } from './resize'
@@ -83,7 +83,17 @@ const topStickRef = ref<HTMLDivElement>()
 const rightStickRef = ref<HTMLDivElement>()
 const bottomStickRef = ref<HTMLDivElement>()
 
-const realSize = ref(props.initialSize ?? {})
+const realSize = ref({
+  width: unref(props.width),
+  height: unref(props.height),
+})
+onMounted(() => {
+  if (!resizeRef.value) throw `[Sa Error]: Could not get the resize ref.`
+  if (isNullish(realSize.value.width))
+    realSize.value.width = resizeRef.value.offsetWidth
+  if (isNullish(realSize.value.height))
+    realSize.value.height = resizeRef.value.offsetHeight
+})
 const resizeStyle = computed(() => {
   const basic: CSSProperties = {}
 
@@ -95,30 +105,48 @@ const resizeStyle = computed(() => {
   return basic
 })
 
+watch(
+  [() => unref(props.width), () => unref(props.height)],
+  ([width, height]) => onResizing({ width, height })
+)
 const onResizing: OnResizingFn = ({ width, height }) => {
-  if (width) realSize.value.width = width
-  if (height) realSize.value.height = height
+  if (width) {
+    realSize.value.width = width
+    emit('update:width', width)
+  }
+  if (height) {
+    realSize.value.height = height
+    emit('update:height', height)
+  }
   emit('resizing', { width, height })
 }
 
 useStickResize(leftStickRef, {
   direction: 'left',
   origin: realSize,
+  min: props.min,
+  max: props.max,
   onResizing,
 })
 useStickResize(rightStickRef, {
   direction: 'right',
   origin: realSize,
+  min: props.min,
+  max: props.max,
   onResizing,
 })
 useStickResize(topStickRef, {
   direction: 'top',
   origin: realSize,
+  min: props.min,
+  max: props.max,
   onResizing,
 })
 useStickResize(bottomStickRef, {
   direction: 'bottom',
   origin: realSize,
+  min: props.min,
+  max: props.max,
   onResizing,
 })
 </script>

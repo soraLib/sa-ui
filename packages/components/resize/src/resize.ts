@@ -1,6 +1,7 @@
 import { isObject } from '@vue/shared'
+import { isNumber } from 'lodash-unified'
 import { buildProps, definePropType } from '@sa-ui/utils'
-import type { ElementSize } from '@vueuse/core'
+import type { ElementSize, MaybeRef } from '@vueuse/core'
 import type { Arrayable } from '@sa-ui/utils'
 import type Resize from './resize.vue'
 
@@ -11,16 +12,24 @@ export const resizeProps = buildProps({
     type: definePropType<Arrayable<ResizeDirection>>(String),
     required: true,
   },
-  initialSize: {
-    type: definePropType<ResizeSize>(Object),
-    required: true,
+  width: {
+    type: definePropType<MaybeRef<number>>(Number),
   },
-  // TODO: minSize: {}
-  // TODO: maxSize: {}
+  height: {
+    type: definePropType<MaybeRef<number>>(Number),
+  },
+  min: {
+    type: definePropType<number>(Number),
+  },
+  max: {
+    type: definePropType<number>(Number),
+  },
 } as const)
 
 export const resizeEmits = {
   resizing: (size: Partial<ElementSize>) => isObject(size),
+  'update:width': (width: number) => isNumber(width),
+  'update:height': (height: number) => isNumber(height),
 }
 
 export type ResizeProps = typeof resizeProps

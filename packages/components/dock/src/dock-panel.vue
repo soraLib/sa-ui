@@ -51,7 +51,8 @@
 
 <script lang="ts" setup>
 import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue'
-import { isNumber, useDraggable, useMouseInElement } from '@vueuse/core'
+import { useDraggable, useMouseInElement } from '@vueuse/core'
+import { isNumber } from 'lodash-unified'
 import { SResize, dockRootContextKey } from '@sa-ui/components'
 import { addUnit, move, throwError } from '@sa-ui/utils'
 import { dockPanelProps } from './dock-panel'
@@ -82,9 +83,9 @@ const panel = ref<PanelState>({
 })
 dockRoot.registerPanel(panel.value)
 
-const glueBefore = ref<null | HTMLDivElement>(null)
-const glueAfter = ref<null | HTMLDivElement>(null)
-const dockPanel = ref<null | HTMLDivElement>(null)
+const glueBefore = ref<HTMLDivElement>()
+const glueAfter = ref<HTMLDivElement>()
+const dockPanel = ref<HTMLDivElement>()
 const dockPanelPosition = ref<Position | { x: undefined; y: undefined }>({
   x: undefined,
   y: undefined,
