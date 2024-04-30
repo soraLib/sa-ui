@@ -38,7 +38,7 @@
     "unplugin-icons": "^0.14.12",
     "unplugin-vue-components": "^0.25.0",
     "unplugin-vue-macros": "^1.2.2",
-    "vite-plugin-pwa": "^0.13.1",
+    "vite-plugin-pwa": "^0.20.0",
     "vite-plugin-windicss": "^1.8.8",
     "vitepress": "1.0.0-alpha.21",
     "workbox-core": "^6.5.4",
